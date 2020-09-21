@@ -6,3 +6,9 @@ sources:
     database: "{{ var('twitter_ads_database', target.database) }}"
     tables:
       - name: account_history
+      - name: campaign_history
+      - name: line_item_history
+      - name: promoted_tweet_history
+      - name: tweet
+      - name: tweet_url
+      - name: tweet_media

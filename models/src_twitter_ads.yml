@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: twitter_ads
+    schema: "{{ var('twitter_ads_schema', 'twitter_ads') }}"
+    database: "{{ var('twitter_ads_database', target.database) }}"
+    tables:
+      - name: account_history

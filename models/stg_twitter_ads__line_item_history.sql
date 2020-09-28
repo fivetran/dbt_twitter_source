@@ -18,6 +18,13 @@ renamed as (
 
     from source
 
+), latest as (
+
+    select
+        *,
+        row_number() over (partition by line_item_id order by updated_timestamp asc) = 1 as is_latest_version
+    from renamed 
+
 )
 
-select * from renamed
+select * from latest

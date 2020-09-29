@@ -22,7 +22,7 @@ renamed as (
 
     select
         *,
-        spend_micro / 1000.0 as spend
+        round(spend_micro / 1000000.0,2) as spend
     from renamed
 
 )

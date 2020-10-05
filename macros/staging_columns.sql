@@ -99,55 +99,6 @@
 
 {% endmacro %}
 
-{% macro get_scheduled_promoted_tweet_history_columns() %}
-
-{% set columns = [] %}
-
-{{ return(columns) }}
-
-{% endmacro %}
-
-{% macro get_media_creative_history_columns() %}
-
-{% set columns = [] %}
-
-{{ return(columns) }}
-
-{% endmacro %}
-
-{% macro get_tweet_columns() %}
-
-{% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
-    {"name": "account_id", "datatype": dbt_utils.type_string()},
-    {"name": "card_uri", "datatype": dbt_utils.type_string()},
-    {"name": "coordinates_coordinates", "datatype": dbt_utils.type_string()},
-    {"name": "coordinates_type", "datatype": dbt_utils.type_string()},
-    {"name": "created_at", "datatype": dbt_utils.type_timestamp(), "alias": "created_timestamp"},
-    {"name": "favorite_count", "datatype": dbt_utils.type_int()},
-    {"name": "favorited", "datatype": "boolean", "alias": "was_favorited"},
-    {"name": "followers", "datatype": "boolean"},
-    {"name": "full_text", "datatype": dbt_utils.type_string()},
-    {"name": "geo_coordinates", "datatype": dbt_utils.type_string()},
-    {"name": "geo_type", "datatype": dbt_utils.type_string()},
-    {"name": "id", "datatype": dbt_utils.type_string(), "alias": "tweet_id"},
-    {"name": "in_reply_to_screen_name", "datatype": dbt_utils.type_string()},
-    {"name": "in_reply_to_status_id", "datatype": dbt_utils.type_string()},
-    {"name": "in_reply_to_user_id", "datatype": dbt_utils.type_string()},
-    {"name": "lang", "datatype": dbt_utils.type_string()},
-    {"name": "media_key", "datatype": dbt_utils.type_string()},
-    {"name": "retweet_count", "datatype": dbt_utils.type_int()},
-    {"name": "retweeted", "datatype": "boolean", "alias": "is_retweeted"},
-    {"name": "source", "datatype": dbt_utils.type_string()},
-    {"name": "truncated", "datatype": "boolean", "alias": "is_truncated"},
-    {"name": "tweet_type", "datatype": dbt_utils.type_string()},
-    {"name": "user_id", "datatype": dbt_utils.type_string()}
-] %}
-
-{{ return(columns) }}
-
-{% endmacro %}
-
 {% macro get_tweet_url_columns() %}
 
 {% set columns = [
@@ -157,26 +108,6 @@
     {"name": "index", "datatype": dbt_utils.type_int()},
     {"name": "indices", "datatype": dbt_utils.type_string()},
     {"name": "tweet_id", "datatype": dbt_utils.type_string()},
-    {"name": "url", "datatype": dbt_utils.type_string()}
-] %}
-
-{{ return(columns) }}
-
-{% endmacro %}
-
-{% macro get_tweet_media_columns() %}
-
-{% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
-    {"name": "display_url", "datatype": dbt_utils.type_string()},
-    {"name": "expanded_url", "datatype": dbt_utils.type_string()},
-    {"name": "indices", "datatype": dbt_utils.type_string()},
-    {"name": "media_id", "datatype": dbt_utils.type_string()},
-    {"name": "media_url", "datatype": dbt_utils.type_string()},
-    {"name": "media_url_https", "datatype": dbt_utils.type_string()},
-    {"name": "sizes", "datatype": dbt_utils.type_string()},
-    {"name": "tweet_id", "datatype": dbt_utils.type_string()},
-    {"name": "type", "datatype": dbt_utils.type_string()},
     {"name": "url", "datatype": dbt_utils.type_string()}
 ] %}
 

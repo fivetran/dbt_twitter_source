@@ -9,7 +9,5 @@ sources:
       - name: campaign_history
       - name: line_item_history
       - name: promoted_tweet_history
-      - name: tweet
       - name: tweet_url
-      - name: tweet_media
       - name: promoted_tweet_report

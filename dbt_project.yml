@@ -8,3 +8,12 @@ test-paths: ["tests"]
 data-paths: ["data"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+
+vars:
+  twitter_ads_source:
+    account_history: "{{ source('twitter_ads','account_history') }}"
+    campaign_history: "{{ source('twitter_ads','campaign_history') }}"
+    line_item_history: "{{ source('twitter_ads','line_item_history') }}"
+    promoted_tweet_history: "{{ source('twitter_ads','promoted_tweet_history') }}"
+    promoted_tweet_report: "{{ source('twitter_ads','promoted_tweet_report') }}"
+    tweet_url: "{{ source('twitter_ads','tweet_url') }}"

@@ -1,2 +1,2 @@
 select *
-from {{ source('twitter_ads','account_history') }}
+from {{ var('account_history') }}

@@ -4,7 +4,7 @@ This package models Twitter Ads data from [Fivetran's connector](https://fivetra
 
 ## Models
 
-This package contains staging models, designed to work simultaneously with our [Twitter Ads modeling package](https://github.com/fivetran/dbt_twitter). The staging models name columns consistently across all packages:
+This package contains staging models, designed to work simultaneously with our [Twitter Ads modeling package](https://github.com/fivetran/dbt_twitter) and our [multi-platform Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting). The staging models name columns consistently across all packages:
  * Boolean fields are prefixed with `is_` or `has_`
  * Timestamps are appended with `_timestamp`
  * ID primary keys are prefixed with the name of the table. For example, the campaign table's ID column is renamed `campaign_id`.
@@ -24,6 +24,18 @@ config-version: 2
 vars:
     twitter_ads_schema: your_schema_name
     twitter_ads_database: your_database_name 
+```
+
+### Changing the Build Schema
+By default this package will build the Twitter staging models within a schema titled (<target_schema> + `_stg_twitter`) in your target database. If this is not where you would like your Twitter staging data to be written to, add the following configuration to your `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+
+...
+models:
+    twitter_source:
+      +schema: my_new_schema_name # leave blank for just the target_schema
 ```
 
 ## Contributions

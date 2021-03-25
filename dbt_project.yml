@@ -5,8 +5,8 @@ config-version: 2
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
 models:
-  twitter_source:
-    +schema: stg_twitter
+  twitter_ads_source:
+    +schema: stg_twitter_ads
 
 vars:
   twitter_ads_source:

@@ -23,7 +23,7 @@ sources:
           - name: id
             description: The ID of the account.
           - name: industry_type
-            description: The industry of the accoutns.
+            description: The industry of the accounts.
           - name: name
             description: The name of the account.
           - name: timezone
@@ -32,6 +32,8 @@ sources:
             description: The timestamp the account's timezone was last changed.
           - name: updated_at
             description: "{{ doc('updated_at') }}"
+          - name: salt
+            description: The random encryption key used to has data.
       - name: campaign_history
         description: Each record represents a version of each campaign. The versions can be differentiated by the updated_at timestamp.
         columns:
@@ -69,6 +71,8 @@ sources:
             description: The total budget amount to be allocated to the campaign.
           - name: updated_at
             description: "{{ doc('updated_at') }}"
+          - name: funding_instrument_id
+            description: Reference to the funding instrument.
       - name: line_item_history
         description: Each record represents a version of each line item. The versions can be differentiated by the updated_at timestamp.
         columns:

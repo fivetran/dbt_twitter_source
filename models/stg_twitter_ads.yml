@@ -19,7 +19,7 @@ models:
       - name: account_id
         description: The ID of the account.
       - name: industry_type
-        description: The industry of the accoutns.
+        description: The industry of the accounts.
       - name: name
         description: The name of the account.
       - name: timezone
@@ -30,6 +30,8 @@ models:
         description: "{{ doc('updated_at') }}"
       - name: is_latest_version
         description: Whether the record is the most latest version for the account
+      - name: salt
+        description: The random encryption key used to has data.
   - name: stg_twitter_ads__campaign_history
     description: Each record represents a version of each campaign. The versions can be differentiated by the updated_at timestamp.
     columns:
@@ -69,6 +71,8 @@ models:
         description: "{{ doc('updated_at') }}"
       - name: is_latest_version
         description: Whether the record is the most latest version for the campaign
+      - name: funding_instrument_id
+        description: Reference to the funding instrument.
   - name: stg_twitter_ads__line_item_history
     description: Each record represents a version of each line item. The versions can be differentiated by the updated_at timestamp.
     columns:

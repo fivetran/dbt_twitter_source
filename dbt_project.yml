@@ -1,8 +1,12 @@
 name: 'twitter_ads_source'
-version: '1.0.0'
+version: '0.2.0'
 config-version: 2
 
 require-dbt-version: [">=0.18.0", "<0.20.0"]
+
+models:
+  twitter_ads_source:
+    +schema: stg_twitter_ads
 
 vars:
   twitter_ads_source:

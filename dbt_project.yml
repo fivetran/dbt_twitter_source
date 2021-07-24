@@ -13,5 +13,3 @@ vars:
     promoted_tweet_history: "{{ source('twitter_ads','promoted_tweet_history') }}"
     promoted_tweet_report: "{{ source('twitter_ads','promoted_tweet_report') }}"
     tweet_url: "{{ source('twitter_ads','tweet_url') }}"
-  dbt_utils_dispatch_list: ['spark_utils', 'fivetran_utils']
-  fivetran_utils_dispatch_list: ['spark_utils']

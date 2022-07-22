@@ -6,13 +6,18 @@ snapshot-paths: ["snapshots"]
 
 vars:
   twitter_ads_source:
-    account_history: "{{ ref('twitter_account_history_data') }}"
-    campaign_history: "{{ ref('twitter_campaign_history_data') }}"
-    line_item_history: "{{ ref('twitter_line_item_history_data') }}"
-    promoted_tweet_history: "{{ ref('twitter_promoted_tweet_history_data') }}"
-    promoted_tweet_report: "{{ ref('twitter_promoted_tweet_report_data') }}"
-    tweet_url: "{{ ref('twitter_tweet_url_data') }}"
-
+    account_history_identifier: "twitter_account_history_data"
+    campaign_history_identifier: "twitter_campaign_history_data"
+    line_item_history_identifier: "twitter_line_item_history_data"
+    promoted_tweet_history_identifier: "twitter_promoted_tweet_history_data"
+    promoted_tweet_report_identifier: "twitter_promoted_tweet_report_data"
+    tweet_url_identifier: "twitter_tweet_url_data"
+    tweet_identifier: "tweet_data"
+    campaign_report_identifier: "campaign_report_data"
+    line_item_report_identifier: "tweet_url_data"
+    account_report_identifier: "account_report_data"
+    line_item_keywords_report_identifier: "line_item_keywords_report_data"
+    
 seeds:
   twitter_source_integration_tests:
     twitter_tweet_url_data:

@@ -22,6 +22,7 @@ renamed as (
 
     select
         *,
+        -- TOOD: move this over to the passthrough metric framework? 
         round(spend_micro / 1000000.0,2) as spend
     from renamed
 

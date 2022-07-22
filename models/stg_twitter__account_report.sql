@@ -20,17 +20,16 @@ fields as (
 final as (
     
     select 
-        _fivetran_synced,
+        date as date_day,
         account_id,
-        date,
-        engagements,
-        follows,
-        impressions,
-        likes,
-        placement,
+        {# engagements,
+        follows, #}
+        impressions -- see if this ties out
+        {# likes,
         replies,
         retweets,
-        unfollows
+        unfollows #}
+
     from fields
 )
 

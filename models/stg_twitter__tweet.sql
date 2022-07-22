@@ -20,31 +20,12 @@ fields as (
 final as (
     
     select 
-        _fivetran_synced,
         account_id,
-        card_uri,
-        coordinates_coordinates,
-        coordinates_type,
-        created_at,
-        favorite_count,
-        favorited,
-        followers,
-        full_text,
-        geo_coordinates,
-        geo_type,
-        id,
-        in_reply_to_screen_name,
-        in_reply_to_status_id,
-        in_reply_to_user_id,
-        lang,
-        media_key,
+        id as tweet_id,
         name,
-        retweet_count,
-        retweeted,
-        source,
-        truncated,
-        tweet_type,
-        user_id
+        full_text,
+        lang as language
+
     from fields
 )
 

@@ -183,3 +183,104 @@ sources:
             description: The ID of the related promoted tweet.
           - name: url_clicks
             description: The url clicks for the promoted tweet on that day.
+      - name: tweet
+        description: Each record represents a tweet, promoted or not. 
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: id
+            description: Unique identifier of the tweet.
+          - name: name 
+            description: If provided, the non-public title of the tweet. 
+          - name: full_text
+            description: Full text of the tweet's content.
+          - name: lang
+            description: Two-letter language code of the tweet. 
+      - name: campaign_report
+        description: Each record represents the performance of an ad campaign on a given day.
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: billed_charge_local_micro
+            description: The spend for the campaign on that day, in micros and in whichever currency was selected during account creation.
+          - name: clicks
+            description: The clicks for the campaign on that day.
+          - name: date
+            description: The date of the performance.
+          - name: impressions
+            description: The impressions for the campaign on that day.
+          - name: campaign_id
+            description: The ID of the ad campaign.
+          - name: url_clicks
+            description: The url clicks for the campaign on that day.
+      - name: line_item_report
+        description: Each record represents the performance of a line item (ad group) on a given day.
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: billed_charge_local_micro
+            description: The spend for the line item on that day, in micros and in whichever currency was selected during account creation.
+          - name: clicks
+            description: The clicks for the line item on that day.
+          - name: date
+            description: The date of the performance.
+          - name: impressions
+            description: The impressions for the line item on that day.
+          - name: line_item_id
+            description: The ID of the line item.
+          - name: url_clicks
+            description: The url clicks for the line item on that day.
+      - name: account_report
+        description: Each record represents the performance of an account on a given day. This differs from the other report tables as the metrics are focused on in-Twitter activities only.
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the tracked account.
+          - name: date
+            description: The date of the performance.
+          - name: engagements
+            description: >
+              Total number of times a user interacted with a Tweet. Clicks anywhere on the Tweet, including Retweets, replies, follows, 
+              likes, links, cards, hashtags, embedded media, username, profile photo, or Tweet expansion
+          - name: follows
+            description: Follows gained by the account on a given day.
+          - name: impressions
+            description: Times a user is served a tweet from the account, in timeline or search results, on that day.
+          - name: likes
+            description: Times a user liked the account's tweets on that day.
+          - name: replies
+            description: User replies to the account's tweets on that day.
+          - name: retweets
+            description: User retweets of the account's tweets on that day.
+          - name: unfollows
+            description: Users unfollowing the account on a given day.
+      - name: line_item_keywords_report
+        description: Each record represents the performance of a line item (ad group) and keyword combination on a given day.
+        config:
+          enabled: "{{ var('twitter_ads__using_keywords', true) }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: billed_charge_local_micro
+            description: The spend for the line item + keyword on that day, in micros and in whichever currency was selected during account creation.
+          - name: clicks
+            description: The clicks for the line item + keyword on that day.
+          - name: date
+            description: The date of the performance.
+          - name: impressions
+            description: The impressions for the line item + keyword on that day.
+          - name: line_item_id
+            description: The ID of the line item.
+          - name: url_clicks
+            description: The url clicks for the line item + keyword on that day.
+          - name: segment
+            description: The keyword whose performance is being tracked.

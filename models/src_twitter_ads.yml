@@ -7,7 +7,8 @@ sources:
     tables:
       - name: account_history
         description: Each record represents a version of each account. The versions can be differentiated by the updated_at timestamp.
-        columns:
+        identifier: "{{ var('twitter_ads_account_history_identifier', 'account_history') }}"
+        columns: 
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
           - name: approval_status
@@ -36,6 +37,7 @@ sources:
             description: The random encryption key used to has data.
       - name: campaign_history
         description: Each record represents a version of each campaign. The versions can be differentiated by the updated_at timestamp.
+        identifier: "{{ var('twitter_ads_campaign_history_identifier', 'campaign_history') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -75,6 +77,7 @@ sources:
             description: Reference to the funding instrument.
       - name: line_item_history
         description: Each record represents a version of each line item. The versions can be differentiated by the updated_at timestamp.
+        identifier: "{{ var('twitter_ads_line_item_history_identifier', 'line_item_history') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -128,6 +131,7 @@ sources:
             description: "{{ doc('updated_at') }}"
       - name: promoted_tweet_history
         description: Each record represents a version of each promoted tweet. The versions can be differentiated by the updated_at timestamp.
+        identifier: "{{ var('twitter_ads_promoted_tweet_history_identifier', 'promoted_tweet_history') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -149,6 +153,7 @@ sources:
             description: "{{ doc('updated_at') }}"
       - name: tweet_url
         description: Each record represents a URL used in a tweet.
+        identifier: "{{ var('twitter_ads_tweet_url_identifier', tweet_url') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -166,6 +171,7 @@ sources:
             description: The 't.co' shortened URL.
       - name: promoted_tweet_report
         description: Each record represents the performance of a promoted tweet on a given day.
+        identifier: "{{ var('twitter_ads_promoted_tweet_report_identifier', 'promoted_tweet_report') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -185,6 +191,7 @@ sources:
             description: The url clicks for the promoted tweet on that day.
       - name: tweet
         description: Each record represents a tweet, promoted or not. 
+        identifier: "{{ var('twitter_ads_tweet_identifier', 'tweet') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -200,6 +207,7 @@ sources:
             description: Two-letter language code of the tweet. 
       - name: campaign_report
         description: Each record represents the performance of an ad campaign on a given day.
+        identifier: "{{ var('twitter_ads_campaign_report_identifier', 'campaign_report') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -219,6 +227,7 @@ sources:
             description: The url clicks for the campaign on that day.
       - name: line_item_report
         description: Each record represents the performance of a line item (ad group) on a given day.
+        identifier: "{{ var('twitter_ads_line_item_report_identifier', 'line_item_report') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -238,6 +247,7 @@ sources:
             description: The url clicks for the line item on that day.
       - name: account_report
         description: Each record represents the performance of an account on a given day. This differs from the other report tables as the metrics are focused on in-Twitter activities only.
+        identifier: "{{ var('twitter_ads_account_report_identifier', 'account_report') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -263,6 +273,7 @@ sources:
             description: Users unfollowing the account on a given day.
       - name: line_item_keywords_report
         description: Each record represents the performance of a line item (ad group) and keyword combination on a given day.
+        identifier: "{{ var('twitter_ads_line_item_keywords_report_identifier', 'line_item_keywords_report') }}"
         config:
           enabled: "{{ var('twitter_ads__using_keywords', true) }}"
         columns:

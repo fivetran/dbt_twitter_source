@@ -1,3 +1,26 @@
+# dbt_twitter_source v0.5.0
+## 🚨 Breaking Changes 🚨
+Probably gonna make the pre-existing tables have pass through columns instead of passing ALL columns: TODO
+## 🎉 Feature Enhancements 🎉
+PR [#18](https://github.com/fivetran/dbt_pinterest_source/pull/18) includes the following changes:
+- Addition of the following staging models which pull from the source counterparts. The inclusion of the additional `_report` source tables is to generate a more accurate representation of the Pinterest Ads data. For example, not all Ad types are included within the `pin_promotion_report` table. Therefore, the addition of the further grain reports will allow for more flexibility and accurate Pinterest Ad reporting. 
+  - `stg_pinterest_ads__ad_group_report`
+  - `stg_pinterest_ads__advertiser_report`
+  - `stg_pinterest_ads__campaign_report`
+  - `stg_pinterest_ads__keyword_report`
+  - `stg_pinterest_ads__advertiser_history`
+  - `stg_pinterest_ads__keyword_history`
+
+- Inclusion of additional passthrough metrics: 
+  - `pinterest__ad_group_report_passthrough_metrics`
+  - `pinterest__campaign_report_passthrough_metrics`
+  - `pinterest__advertiser_report_passthrough_metrics`
+  - `pinterest__keyword_report_passthrough_metrics`
+
+- README updates for easier navigation and use of the package. 
+- Addition of identifier variables for each of the source tables to allow for further flexibility in source table direction within the dbt project.
+- Included grain uniqueness tests for each staging table. 
+
 # dbt_twitter_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨

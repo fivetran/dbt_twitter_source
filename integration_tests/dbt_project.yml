@@ -5,7 +5,7 @@ config-version: 2
 snapshot-paths: ["snapshots"]
 
 vars:
-  twitter_ads_source:
+  twitter_source:
     netsuite_schema: twitter_source_integration_tests
 
     account_history_identifier: "twitter_account_history_data"

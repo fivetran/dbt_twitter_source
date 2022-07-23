@@ -21,10 +21,19 @@ renamed as (
 ), spend_calc as (
 
     select
-        *,
-        -- TOOD: move this over to the passthrough metric framework? 
-        round(spend_micro / 1000000.0,2) as spend
+        date as date_day,
+        account_id,
+        promoted_tweet_id,
+        sum(clicks) as clicks,
+        sum(impressions) as impressions,
+        sum(billed_charge_local_micro) as spend_micro,
+        round(sum(billed_charge_local_micro) / 1000000.0,2) as spend,
+        sum(url_clicks) as url_clicks
+
+        {{ fivetran_utils.fill_pass_through_columns('twitter_ads__promoted_tweet_report_passthrough_metrics') }} -- they have to be aggregated
+    
     from renamed
+    {{ dbt_utils.group_by(n=3) }}
 
 )
 

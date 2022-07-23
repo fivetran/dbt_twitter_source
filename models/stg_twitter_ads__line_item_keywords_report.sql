@@ -3,7 +3,7 @@
 with base as (
 
     select * 
-    from {{ ref('stg_twitter__line_item_keywords_report_tmp') }}
+    from {{ ref('stg_twitter_ads__line_item_keywords_report_tmp') }}
 ),
 
 fields as (
@@ -11,7 +11,7 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_twitter__line_item_keywords_report_tmp')),
+                source_columns=adapter.get_columns_in_relation(ref('stg_twitter_ads__line_item_keywords_report_tmp')),
                 staging_columns=get_line_item_keywords_report_columns()
             )
         }}

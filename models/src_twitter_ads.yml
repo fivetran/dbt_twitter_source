@@ -153,7 +153,7 @@ sources:
             description: "{{ doc('updated_at') }}"
       - name: tweet_url
         description: Each record represents a URL used in a tweet.
-        identifier: "{{ var('twitter_ads_tweet_url_identifier', tweet_url') }}"
+        identifier: "{{ var('twitter_ads_tweet_url_identifier', 'tweet_url') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"

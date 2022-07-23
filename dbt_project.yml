@@ -22,3 +22,4 @@ vars:
     twitter_ads__campaign_report_passthrough_metrics: []
     twitter_ads__line_item_report_passthrough_metrics: []
     twitter_ads__line_item_keywords_report_passthrough_metrics: []
+    twitter_ads__promoted_tweet_report_passthrough_metrics: []

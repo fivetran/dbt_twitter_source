@@ -3,6 +3,11 @@ version: 2
 models:
   - name: stg_twitter_ads__account_history
     description: Each record represents a version of each account. The versions can be differentiated by the updated_at timestamp.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - account_id
+            - updated_timestamp
     columns:
       - name: _fivetran_synced
         description: "{{ doc('_fivetran_synced') }}"
@@ -31,9 +36,14 @@ models:
       - name: is_latest_version
         description: Whether the record is the most latest version for the account
       - name: salt
-        description: The random encryption key used to has data.
+        description: The random encryption key used to hash data.
   - name: stg_twitter_ads__campaign_history
     description: Each record represents a version of each campaign. The versions can be differentiated by the updated_at timestamp.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - campaign_id
+            - updated_timestamp    
     columns:
       - name: _fivetran_synced
         description: "{{ doc('_fivetran_synced') }}"
@@ -75,6 +85,11 @@ models:
         description: Reference to the funding instrument.
   - name: stg_twitter_ads__line_item_history
     description: Each record represents a version of each line item. The versions can be differentiated by the updated_at timestamp.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - line_item_id
+            - updated_timestamp 
     columns:
       - name: _fivetran_synced
         description: "{{ doc('_fivetran_synced') }}"
@@ -129,7 +144,12 @@ models:
       - name: is_latest_version
         description: Whether the record is the most latest version for the line item.
   - name: stg_twitter_ads__promoted_tweet_history
-    description: TEach record represents a version of each promoted tweet. The versions can be differentiated by the updated_at timestamp.BD
+    description: TEach record represents a version of each promoted tweet. The versions can be differentiated by the updated_at timestamp.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - promoted_tweet_id
+            - updated_timestamp 
     columns:
       - name: _fivetran_synced
         description: "{{ doc('_fivetran_synced') }}"
@@ -153,6 +173,11 @@ models:
         description: Whether the record is the most latest version for the promoted tweet.
   - name: stg_twitter_ads__promoted_tweet_report
     description: Each record represents the performance of a promoted tweet on a given day.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - promoted_tweet_id 
     columns:
       - name: _fivetran_synced
         description: "{{ doc('_fivetran_synced') }}"
@@ -205,3 +230,125 @@ models:
         description: The utm_content parameter of the ad, extracted from the `expanded_url`.
       - name: utm_term
         description: The utm_term parameter of the ad, extracted from the `expanded_url`.
+  - name: stg_twitter_ads__campaign_report
+    description: Each record represents the performance of an ad campaign on a given day.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - campaign_id 
+    columns:
+      - name: account_id
+        description: The ID of the related account.
+      - name: spend_micro
+        description: The spend for the campaign on that day, in micros and in whichever currency was selected during account creation.
+      - name: spend
+        description: The spend for the campaign on that day in whichever currency was selected during account creation.
+      - name: clicks
+        description: The clicks for the campaign on that day.
+      - name: date_day
+        description: The date of the performance.
+      - name: impressions
+        description: The impressions for the campaign on that day.
+      - name: campaign_id
+        description: The ID of the campaign.
+      - name: url_clicks
+        description: The url clicks for the campaign on that day.
+  - name: stg_twitter_ads__line_item_report
+    description: Each record represents the performance of a line item (ad group) on a given day.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - line_item_id 
+    columns:
+      - name: account_id
+        description: The ID of the related account.
+      - name: spend_micro
+        description: The spend for the line item on that day, in micros and in whichever currency was selected during account creation.
+      - name: spend
+        description: The spend for the line item on that day in whichever currency was selected during account creation.
+      - name: clicks
+        description: The clicks for the line item on that day.
+      - name: date_day
+        description: The date of the performance.
+      - name: impressions
+        description: The impressions for the line item on that day.
+      - name: line_item_id
+        description: The ID of the line item.
+      - name: url_clicks
+        description: The url clicks for the line item on that day.
+  - name: stg_twitter_ads__line_item_keywords_report
+    description: Each record represents the performance of a line item (ad group) and keyword combination on a given day.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - line_item_id 
+            - keyword
+    columns:
+      - name: account_id
+        description: The ID of the related account.
+      - name: spend_micro
+        description: The spend for the line item + keyword on that day, in micros and in whichever currency was selected during account creation.
+      - name: spend
+        description: The spend for the line item + keyword on that day in whichever currency was selected during account creation.
+      - name: clicks
+        description: The clicks for the line item + keyword on that day.
+      - name: date_day
+        description: The date of the performance.
+      - name: impressions
+        description: The impressions for the line item + keyword on that day.
+      - name: line_item_id
+        description: The ID of the line item.
+      - name: url_clicks
+        description: The url clicks for the line item + keyword on that day.
+      - name: keyword
+        description: The keyword whose performance is being tracked.
+  - name: stg_twitter_ads__account_report
+    description: Each record represents the performance of an account on a given day. This differs from the other report tables as the metrics are focused on in-Twitter activities only.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - account_id 
+    columns:
+      - name: _fivetran_synced
+        description: "{{ doc('_fivetran_synced') }}"
+      - name: account_id
+        description: The ID of the tracked account.
+      - name: date
+        description: The date of the performance.
+      - name: engagements
+        description: >
+          Total number of times a user interacted with a Tweet. Clicks anywhere on the Tweet, including Retweets, replies, follows, 
+          likes, links, cards, hashtags, embedded media, username, profile photo, or Tweet expansion
+      - name: follows
+        description: Follows gained by the account on a given day.
+      - name: impressions
+        description: Times a user is served a tweet from the account, in timeline or search results, on that day.
+      - name: likes
+        description: Times a user liked the account's tweets on that day.
+      - name: replies
+        description: User replies to the account's tweets on that day.
+      - name: retweets
+        description: User retweets of the account's tweets on that day.
+      - name: unfollows
+        description: Users unfollowing the account on a given day.
+  - name: stg_twitter_ads__tweet
+    description: Each record represents a tweet, promoted or not. 
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - tweet_id
+    columns:
+      - name: account_id
+        description: The ID of the related account.
+      - name: tweet_id
+        description: Unique identifier of the tweet.
+      - name: name 
+        description: If provided, the non-public title of the tweet. 
+      - name: full_text
+        description: Full text of the tweet's content.
+      - name: language
+        description: Two-letter language code of the tweet. 

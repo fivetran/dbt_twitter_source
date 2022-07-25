@@ -8,6 +8,7 @@
     {"name": "clicks", "datatype": dbt_utils.type_int()},
     {"name": "date", "datatype": dbt_utils.type_timestamp()},
     {"name": "impressions", "datatype": dbt_utils.type_int()},
+    {"name": "placement", "datatype": dbt_utils.type_string()},
     {"name": "url_clicks", "datatype": dbt_utils.type_int()}
 ] %}
 

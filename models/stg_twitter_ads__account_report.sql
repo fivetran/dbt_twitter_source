@@ -22,6 +22,7 @@ final as (
     select 
         date as date_day,
         account_id,
+        placement,
         {# engagements,
         follows, #}
         impressions -- see if this ties out

@@ -25,6 +25,7 @@ final as (
         account_id,
         line_item_id,
         segment as keyword,
+        placement,
         clicks,
         impressions,
         billed_charge_local_micro as spend_micro,

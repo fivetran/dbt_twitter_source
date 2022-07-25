@@ -22,6 +22,7 @@ final as (
         date as date_day,
         account_id,
         line_item_id,
+        placement,
         clicks,
         impressions,
         billed_charge_local_micro as spend_micro,

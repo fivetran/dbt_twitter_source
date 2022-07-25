@@ -15,7 +15,7 @@ vars:
     tweet_url: "{{ source('twitter_ads','tweet_url') }}"
     tweet: "{{ source('twitter_ads','tweet') }}"
     campaign_report: "{{ source('twitter_ads','campaign_report') }}"
-    line_item_report: "{{ source('twitter_ads','tweet_url') }}"
+    line_item_report: "{{ source('twitter_ads','line_item_report') }}"
     account_report: "{{ source('twitter_ads','account_report') }}"
     line_item_keywords_report: "{{ source('twitter_ads','line_item_keywords_report') }}"
 

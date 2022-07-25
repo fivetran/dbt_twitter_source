@@ -6,7 +6,7 @@ snapshot-paths: ["snapshots"]
 
 vars:
   twitter_source:
-    netsuite_schema: twitter_source_integration_tests
+    twitter_ads_schema: twitter_source_integration_tests
 
     account_history_identifier: "twitter_account_history_data"
     campaign_history_identifier: "twitter_campaign_history_data"

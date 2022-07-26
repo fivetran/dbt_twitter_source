@@ -22,6 +22,8 @@ renamed as (
 
     select
         *,
+        round(daily_budget_amount_local_micro / 1000000.0,2) as daily_budget_amount,
+        round(total_budget_amount_local_micro / 1000000.0,2) as total_budget_amount,
         row_number() over (partition by campaign_id order by updated_timestamp asc) = 1 as is_latest_version
     from renamed 
 

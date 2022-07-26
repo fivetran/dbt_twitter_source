@@ -56,7 +56,7 @@ models:
       - name: currency
         description: The currently all metrics for the account are set to.
       - name: daily_budget_amount_local_micro
-        description: The daily budget amount to be allocated to the campaign. The currency associated with the specified funding instrument will be used.
+        description: The daily budget amount to be allocated to the campaign, in micros. The currency associated with the specified funding instrument will be used.
       - name: is_deleted
         description: "{{ doc('deleted') }}"
       - name: duration_in_days
@@ -75,18 +75,22 @@ models:
         description: The name of the campaign.
       - name: is_servable
         description: Whether the campaign is in a state to be actively served to users.
-      - name: standard_delivery
+      - name: is_standard_delivery
         description: Whether standard delivery is enabled (vs accelerated delivery).
       - name: start_timestamp
         description: The time the campaign will start.
       - name: total_budget_amount_local_micro
-        description: The total budget amount to be allocated to the campaign.
+        description: The total budget amount to be allocated to the campaign, in micros.
       - name: updated_timestamp
         description: "{{ doc('updated_at') }}"
       - name: is_latest_version
         description: Whether the record is the most latest version for the campaign
       - name: funding_instrument_id
         description: Reference to the funding instrument.
+      - name: daily_budget_amount
+        description: The daily budget amount to be allocated to the campaign. The currency associated with the specified funding instrument will be used.
+      - name: total_budget_amount
+        description: The total budget amount to be allocated to the campaign.
   - name: stg_twitter_ads__line_item_history
     description: Each record represents a version of each line item. The versions can be differentiated by the updated_at timestamp.
     tests:
@@ -104,7 +108,7 @@ models:
       - name: automatically_select_bid
         description: Whether automatically optimize bidding is enabled based on daily budget and campaign flight dates.
       - name: bid_amount_local_micro
-        description: The bid amount to be associated with this line item.
+        description: The bid amount to be associated with this line item, in micros.
       - name: bid_type
         description: The bidding mechanism.
       - name: bid_unit
@@ -142,13 +146,19 @@ models:
       - name: start_timestamp
         description: The timestamp at which the line item will start being served.
       - name: target_cpa_local_micro
-        description: The target cost per acquisition for the line item.
+        description: The target cost per acquisition for the line item, in micros.
       - name: total_budget_amount_local_micro
-        description: The total budget amount to be allocated to the line item.
+        description: The total budget amount to be allocated to the line item, in micros.
       - name: updated_timestamp
         description: "{{ doc('updated_at') }}"
       - name: is_latest_version
         description: Whether the record is the most latest version for the line item.
+      - name: bid_amount
+        description: The bid amount to be associated with this line item.
+      - name: total_budget_amount
+        description: The total budget amount to be allocated to the campaign.
+      - name: target_cpa
+        description: The target cost per acquisition for the line item.
   - name: stg_twitter_ads__promoted_tweet_history
     description: TEach record represents a version of each promoted tweet. The versions can be differentiated by the updated_at timestamp.
     tests:

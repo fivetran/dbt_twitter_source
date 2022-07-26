@@ -37,7 +37,7 @@
     {"name": "id", "datatype": dbt_utils.type_string(), "alias": "campaign_id"},
     {"name": "name", "datatype": dbt_utils.type_string(), "alias": "campaign_name"},
     {"name": "servable", "datatype": "boolean", "alias": "is_servable"},
-    {"name": "standard_delivery", "datatype": "boolean"},
+    {"name": "standard_delivery", "datatype": "boolean", "alias": "is_standard_delivery"},
     {"name": "start_time", "datatype": dbt_utils.type_timestamp(), "alias": "start_timestamp"},
     {"name": "total_budget_amount_local_micro", "datatype": dbt_utils.type_int()},
     {"name": "updated_at", "datatype": dbt_utils.type_timestamp(), "alias": "updated_timestamp"}

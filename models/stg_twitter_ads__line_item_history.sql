@@ -22,6 +22,9 @@ renamed as (
 
     select
         *,
+        round(bid_amount_local_micro / 1000000.0,2) as bid_amount,
+        round(total_budget_amount_local_micro / 1000000.0,2) as total_budget_amount,
+        round(target_cpa_local_micro / 1000000.0,2) as target_cpa,
         row_number() over (partition by line_item_id order by updated_timestamp asc) = 1 as is_latest_version
     from renamed 
 

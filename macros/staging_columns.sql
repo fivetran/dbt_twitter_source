@@ -12,7 +12,7 @@
     {"name": "name", "datatype": dbt_utils.type_string()},
     {"name": "salt", "datatype": dbt_utils.type_string()},
     {"name": "timezone", "datatype": dbt_utils.type_string()},
-    {"name": "timezone_switch_at", "datatype": dbt_utils.type_timestamp()},
+    {"name": "timezone_switch_at", "datatype": dbt_utils.type_timestamp(), "alias": "timezone_switched_timestamp"},
     {"name": "updated_at", "datatype": dbt_utils.type_timestamp(), "alias": "updated_timestamp"}
 ] %}
 

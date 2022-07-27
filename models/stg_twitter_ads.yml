@@ -31,7 +31,7 @@ models:
         description: The name of the account.
       - name: timezone
         description: The timezone the account is set to.
-      - name: timezone_switch_at
+      - name: timezone_switched_timestamp
         description: The timestamp the account's timezone was last changed.
       - name: updated_timestamp
         description: "{{ doc('updated_at') }}"
@@ -160,7 +160,7 @@ models:
       - name: target_cpa
         description: The target cost per acquisition for the line item.
   - name: stg_twitter_ads__promoted_tweet_history
-    description: TEach record represents a version of each promoted tweet. The versions can be differentiated by the updated_at timestamp.
+    description: Each record represents a version of each promoted tweet. The versions can be differentiated by the updated_at timestamp.
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:

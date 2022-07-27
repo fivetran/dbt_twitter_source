@@ -54,7 +54,7 @@ models:
       - name: created_timestamp
         description: "{{ doc('created_at') }}"
       - name: currency
-        description: The currently all metrics for the account are set to.
+        description: The currency all metrics for the account are set to.
       - name: daily_budget_amount_local_micro
         description: The daily budget amount to be allocated to the campaign, in micros. The currency associated with the specified funding instrument will be used.
       - name: is_deleted
@@ -213,7 +213,7 @@ models:
         tests:
           - not_null
       - name: impressions
-        description: The impressions for the promoted tweet on that day.BD
+        description: The impressions for the promoted tweet on that day.
       - name: promoted_tweet_id
         description: The ID of the related promoted tweet.
         tests:
@@ -364,29 +364,6 @@ models:
         description: The keyword whose performance is being tracked.
         tests:
           - not_null
-      - name: placement
-        description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
-        tests:
-          - not_null
-  - name: stg_twitter_ads__account_report
-    description: Each record represents the performance of an account on a given day. This differs from the other report tables as the metrics are focused on in-Twitter activities only.
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - date_day
-            - account_id 
-            - placement
-    columns:
-      - name: account_id
-        description: The ID of the tracked account.
-        tests:
-          - not_null
-      - name: date_day
-        description: The date of the performance.
-        tests:
-          - not_null
-      - name: impressions
-        description: Times a user is served a tweet from the account, in timeline or search results, on that day.
       - name: placement
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
         tests:

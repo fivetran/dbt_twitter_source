@@ -251,34 +251,6 @@ sources:
             description: The url clicks for the line item on that day.
           - name: placement
             description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
-      - name: account_report
-        description: Each record represents the performance of an account on a given day. This differs from the other report tables as the metrics are focused on in-Twitter activities only.
-        identifier: "{{ var('twitter_ads_account_report_identifier', 'account_report') }}"
-        columns:
-          - name: _fivetran_synced
-            description: "{{ doc('_fivetran_synced') }}"
-          - name: account_id
-            description: The ID of the tracked account.
-          - name: date
-            description: The date of the performance.
-          - name: engagements
-            description: >
-              Total number of times a user interacted with a Tweet. Clicks anywhere on the Tweet, including Retweets, replies, follows, 
-              likes, links, cards, hashtags, embedded media, username, profile photo, or Tweet expansion
-          - name: follows
-            description: Follows gained by the account on a given day.
-          - name: impressions
-            description: Times a user is served a tweet from the account, in timeline or search results, on that day.
-          - name: likes
-            description: Times a user liked the account's tweets on that day.
-          - name: replies
-            description: User replies to the account's tweets on that day.
-          - name: retweets
-            description: User retweets of the account's tweets on that day.
-          - name: unfollows
-            description: Users unfollowing the account on a given day.
-          - name: placement
-            description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
       - name: line_item_keywords_report
         description: Each record represents the performance of a line item (ad group) and keyword combination on a given day.
         identifier: "{{ var('twitter_ads_line_item_keywords_report_identifier', 'line_item_keywords_report') }}"

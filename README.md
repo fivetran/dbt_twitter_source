@@ -1,6 +1,6 @@
 <p align="center">
     <a alt="License"
-        href="https://github.com/fivetran/dbt_pinterest_source/blob/main/LICENSE">
+        href="https://github.com/fivetran/dbt_twitter_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
     <a alt="dbt-core">
         <img src="https://img.shields.io/badge/dbt_Core™_version->=1.0.0_<2.0.0-orange.svg" /></a>
@@ -61,7 +61,6 @@ By default, this package will select `clicks`, `impressions`, and `cost` from `_
 
 ```yml
 # dbt_project.yml
-
 vars:
     twitter_ads__campaign_report_passthrough_metrics: 
         - name: "new_custom_field"
@@ -72,14 +71,15 @@ vars:
           transform_sql: "cast(field_id as int)"
     twitter_ads__line_item_keywords_report_passthrough_metrics: 
         - name: "that_field"
+    twitter_ads__promoted_tweet_report_passthrough_metrics: 
+        - name: "that_field"
 ```
 
 ### Change the build schema
-By default, this package builds the Twitter Ads staging models within a schema titled (`<target_schema>` + `_twitter_source`) in your destination. If this is not where you would like your Twitter staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
+By default, this package builds the Twitter Ads staging models within a schema titled (`<target_schema>` + `_twitter_ads_source`) in your destination. If this is not where you would like your Twitter staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 # dbt_project.yml
-
 models:
     twitter_ads_source:
         +schema: my_new_schema_name # leave blank for just the target_schema
@@ -97,7 +97,6 @@ vars:
 
 ## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core™ setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
-
 
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. Please be aware that these dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
@@ -119,6 +118,6 @@ The Fivetran team maintaining this package _only_ maintains the latest version o
 A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions!
 
 # 🏪 Are there any resources available?
-- If you have questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_pinterest_source/issues/new/choose) section to find the right avenue of support for you.
+- If you have questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_twitter_source/issues/new/choose) section to find the right avenue of support for you.
 - If you would like to provide feedback to the dbt package team at Fivetran or would like to request a new dbt package, fill out our [Feedback Form](https://www.surveymonkey.com/r/DQ7K7WW).
 - Have questions or want to just say hi? Book a time during our office hours [on Calendly](https://calendly.com/fivetran-solutions-team/fivetran-solutions-team-office-hours) or email us at solutions@fivetran.com.

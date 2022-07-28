@@ -17,7 +17,7 @@
   - Name columns for consistency across all packages and for easier analysis
   - Adds freshness tests to source data
   - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
-- Generates a comprehensive data dictionary of your Twitter Ads data through the [dbt docs site](https://fivetran.github.io/dbt_twittersource/).
+- Generates a comprehensive data dictionary of your Twitter Ads data through the [dbt docs site](https://fivetran.github.io/dbt_twitter_source/).
 - These tables are designed to work simultaneously with our [Twitter Ads transformation package](https://github.com/fivetran/dbt_twitter).
 
 # 🎯 How do I use the dbt package?

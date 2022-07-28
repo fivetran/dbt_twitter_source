@@ -222,6 +222,8 @@ models:
         description: The url clicks for the promoted tweet on that day.
       - name: placement
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
+        tests:
+          - not_null
   - name: stg_twitter_ads__tweet_url
     description: Each record represents a URL used in a tweet.
     tests:

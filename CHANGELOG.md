@@ -1,3 +1,6 @@
+# dbt_twitter_source v0.4.1
+- Fixes the `is_latest_version` flag to correctly identify the last updated row.
+
 # dbt_twitter_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨

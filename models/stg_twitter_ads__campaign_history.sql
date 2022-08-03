@@ -5,7 +5,7 @@ with source as (
 
 ),
 
-renamed as (
+fields as (
 
     select
     
@@ -18,15 +18,35 @@ renamed as (
 
     from source
 
-), latest as (
+), 
+
+final as (
 
     select
-        *,
+        _fivetran_synced,
+        account_id,
+        created_at as created_timestamp,
+        currency,
+        daily_budget_amount_local_micro,
+        deleted as is_deleted,
+        duration_in_days,
+        end_time as end_timestamp,
+        entity_status,
+        frequency_cap,
+        funding_instrument_id,
+        id as campaign_id,
+        name as campaign_name,
+        servable as is_servable,
+        standard_delivery as is_standard_delivery,
+        start_time as start_timestamp,
+        total_budget_amount_local_micro,
+        updated_at as updated_timestamp,
         round(daily_budget_amount_local_micro / 1000000.0,2) as daily_budget_amount,
         round(total_budget_amount_local_micro / 1000000.0,2) as total_budget_amount,
-        row_number() over (partition by campaign_id order by updated_timestamp asc) = 1 as is_latest_version
-    from renamed 
+        row_number() over (partition by id order by updated_at asc) = 1 as is_latest_version
+
+    from fields 
 
 )
 
-select * from latest
+select * from final

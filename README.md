@@ -73,6 +73,15 @@ vars:
         - name: "that_field"
     twitter_ads__promoted_tweet_report_passthrough_metrics: 
         - name: "that_field"
+          transform_sql: "that_field / 100.0"
+```
+
+### Disabling Keyword Models
+This package takes into consideration that not every Twitter Ads account tracks `keyword` performance, and allows you to disable the corresponding functionality by adding the following variable configuration:
+```yml
+# dbt_project.yml
+vars:
+    twitter_ads__using_keywords: False # Default = true
 ```
 
 ### Change the build schema

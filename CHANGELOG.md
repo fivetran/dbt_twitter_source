@@ -2,11 +2,11 @@
 
 ## 🎉 Feature Enhancements 🎉
 PR [#13](https://github.com/fivetran/dbt_twitter_source/pull/13) includes the following changes:
-- Addition of the following staging models which pull from the source counterparts. The inclusion of the additional `_report` source tables is to generate a more accurate representation of the Pinterest Ads data. For example, not all Ad types are included within the `pin_promotion_report` table. Therefore, the addition of the further grain reports will allow for more flexibility and accurate Pinterest Ad reporting. 
+- Addition of the following staging models which pull from the source counterparts. The inclusion of the additional `_report` source tables is to generate a more accurate representation of the Twitter Ads data:
   - `stg_twitter_ads__line_item_report`
   - `stg_twitter_ads__account_report`
   - `stg_twitter_ads__campaign_report`
-  - `stg_twitter_ads__line_item_keywords_report`
+  - `stg_twitter_ads__line_item_keywords_report`: This can be disabled by setting the `twitter_ads__using_keywords` variable to `False`.
   - `stg_twitter_ads__tweet`
 
 - Inclusion of additional passthrough metrics: 
@@ -15,9 +15,9 @@ PR [#13](https://github.com/fivetran/dbt_twitter_source/pull/13) includes the fo
   - `twitter_ads__line_item_keywords_report_passthrough_metrics`
   - `twitter_ads__promoted_tweet_report_passthrough_metrics`
 
-- README updates for easier navigation and use of the package. 
+- README updates for easier navigation and use of the package.
 - Addition of identifier variables for each of the source tables to allow for further flexibility in source table direction within the dbt project.
-- Included grain uniqueness tests for each staging table.
+- Addition of grain uniqueness tests for each staging table.
 
 # dbt_twitter_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉

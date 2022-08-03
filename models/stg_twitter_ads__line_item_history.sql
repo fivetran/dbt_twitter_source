@@ -5,7 +5,7 @@ with source as (
 
 ),
 
-renamed as (
+fields as (
 
     select
     
@@ -18,16 +18,43 @@ renamed as (
 
     from source
 
-), latest as (
+), 
+
+final as (
 
     select
-        *,
+        _fivetran_synced,
+        advertiser_domain,
+        advertiser_user_id,
+        automatically_select_bid,
+        bid_amount_local_micro,
+        bid_type,
+        bid_unit,
+        campaign_id,
+        charge_by,
+        created_at as created_timestamp,
+        creative_source,
+        currency,
+        deleted as is_deleted,
+        end_time as end_timestamp,
+        entity_status,
+        id as line_item_id,
+        name,
+        objective,
+        optimization,
+        primary_web_event_tag,
+        product_type,
+        start_time as start_timestamp,
+        target_cpa_local_micro,
+        total_budget_amount_local_micro,
+        updated_at as updated_timestamp,
         round(bid_amount_local_micro / 1000000.0,2) as bid_amount,
         round(total_budget_amount_local_micro / 1000000.0,2) as total_budget_amount,
         round(target_cpa_local_micro / 1000000.0,2) as target_cpa,
-        row_number() over (partition by line_item_id order by updated_timestamp asc) = 1 as is_latest_version
-    from renamed 
+        row_number() over (partition by id order by updated_at asc) = 1 as is_latest_version
+    
+    from fields 
 
 )
 
-select * from latest
+select * from final

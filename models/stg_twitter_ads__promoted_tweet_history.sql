@@ -5,7 +5,7 @@ with source as (
 
 ),
 
-renamed as (
+fields as (
 
     select
     
@@ -18,13 +18,24 @@ renamed as (
 
     from source
 
-), latest as (
+), 
+
+final as (
 
     select
-        *,
-        row_number() over (partition by promoted_tweet_id order by updated_timestamp asc) = 1 as is_latest_version
-    from renamed 
+        _fivetran_synced,
+        approval_status,
+        created_at as created_timestamp,
+        deleted as is_deleted,
+        entity_status,
+        id as promoted_tweet_id,
+        line_item_id,
+        tweet_id,
+        updated_at as updated_timestamp,
+        row_number() over (partition by id order by updated_at asc) = 1 as is_latest_version
+    
+    from fields 
 
 )
 
-select * from latest
+select * from final

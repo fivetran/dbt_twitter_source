@@ -205,13 +205,13 @@ models:
       - name: spend
         description: The spend for the promoted tweet on that day.
       - name: clicks
-        description: The clicks for the promoted tweet on that day.
+        description: The clicks for the promoted tweet on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
       - name: date_day
         description: The date of the performance.
         tests:
           - not_null
       - name: impressions
-        description: The impressions for the promoted tweet on that day.
+        description: The impressions for the promoted tweet on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
       - name: promoted_tweet_id
         description: The ID of the related promoted tweet.
         tests:
@@ -280,13 +280,13 @@ models:
       - name: spend
         description: The spend for the campaign on that day in whichever currency was selected during account creation.
       - name: clicks
-        description: The clicks for the campaign on that day.
+        description: The clicks for the campaign on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
       - name: date_day
         description: The date of the performance.
         tests:
           - not_null
       - name: impressions
-        description: The impressions for the campaign on that day.
+        description: The impressions for the campaign on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
       - name: campaign_id
         description: The ID of the campaign.
         tests:
@@ -313,13 +313,13 @@ models:
       - name: spend
         description: The spend for the line item on that day in whichever currency was selected during account creation.
       - name: clicks
-        description: The clicks for the line item on that day.
+        description: The clicks for the line item on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
       - name: date_day
         description: The date of the performance.
         tests:
           - not_null
       - name: impressions
-        description: The impressions for the line item on that day.
+        description: The impressions for the line item on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
       - name: line_item_id
         description: The ID of the line item.
         tests:
@@ -347,13 +347,13 @@ models:
       - name: spend
         description: The spend for the line item + keyword on that day in whichever currency was selected during account creation.
       - name: clicks
-        description: The clicks for the line item + keyword on that day.
+        description: The clicks for the line item + keyword on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
       - name: date_day
         description: The date of the performance.
         tests:
           - not_null
       - name: impressions
-        description: The impressions for the line item + keyword on that day.
+        description: The impressions for the line item + keyword on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
       - name: line_item_id
         description: The ID of the line item.
         tests:

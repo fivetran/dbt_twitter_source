@@ -32,10 +32,8 @@ final as (
         line_item_id,
         tweet_id,
         updated_at as updated_timestamp,
-        row_number() over (partition by id order by updated_at asc) = 1 as is_latest_version
-    
+        row_number() over (partition by id order by updated_at desc) = 1 as is_latest_version
     from fields 
-
 )
 
 select * from final

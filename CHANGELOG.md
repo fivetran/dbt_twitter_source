@@ -19,6 +19,17 @@ PR [#13](https://github.com/fivetran/dbt_twitter_source/pull/13) includes the fo
 - Addition of identifier variables for each of the source tables to allow for further flexibility in source table direction within the dbt project.
 - Addition of grain uniqueness tests for each staging table.
 
+# dbt_twitter_source v0.4.1
+## Fixes
+- Changes the partition order for the following models so that the `is_latest_version` flag identifies the last updated row.
+  - models/stg_twitter_ads__account_history.sql
+  - models/stg_twitter_ads__campaign_history.sql
+  - models/stg_twitter_ads__line_item_history.sql
+  - models/stg_twitter_ads__promoted_tweet_history.sql
+## Contributors
+- [@dlubawy](https://github.com/dlubawy) ([#15](https://github.com/fivetran/dbt_twitter_source/pull/15))
+
+
 # dbt_twitter_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨

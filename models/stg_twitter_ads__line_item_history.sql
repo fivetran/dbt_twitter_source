@@ -22,7 +22,7 @@ renamed as (
 
     select
         *,
-        row_number() over (partition by line_item_id order by updated_timestamp asc) = 1 as is_latest_version
+        row_number() over (partition by line_item_id order by updated_timestamp desc) = 1 as is_latest_version
     from renamed 
 
 )

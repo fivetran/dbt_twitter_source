@@ -51,10 +51,8 @@ final as (
         round(bid_amount_local_micro / 1000000.0,2) as bid_amount,
         round(total_budget_amount_local_micro / 1000000.0,2) as total_budget_amount,
         round(target_cpa_local_micro / 1000000.0,2) as target_cpa,
-        row_number() over (partition by id order by updated_at asc) = 1 as is_latest_version
-    
+        row_number() over (partition by id order by updated_at desc) = 1 as is_latest_version
     from fields 
-
 )
 
 select * from final

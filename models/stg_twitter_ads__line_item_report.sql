@@ -19,7 +19,7 @@ fields as (
 final as (
     
     select 
-        date as date_day,
+        {{ dbt_utils.date_trunc('day', 'date') }} as date_day,
         account_id,
         line_item_id,
         placement,

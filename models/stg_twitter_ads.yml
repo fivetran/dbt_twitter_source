@@ -9,8 +9,6 @@ models:
             - account_id
             - updated_timestamp
     columns:
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
       - name: approval_status
         description: The approval status of the account.
       - name: business_id
@@ -47,8 +45,6 @@ models:
             - campaign_id
             - updated_timestamp    
     columns:
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
       - name: account_id
         description: The ID of the related account.
       - name: created_timestamp
@@ -99,8 +95,6 @@ models:
             - line_item_id
             - updated_timestamp 
     columns:
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
       - name: advertiser_domain
         description: The website domain for this advertiser, without the protocol specification.
       - name: advertiser_user_id
@@ -167,8 +161,6 @@ models:
             - promoted_tweet_id
             - updated_timestamp 
     columns:
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
       - name: approval_status
         description: The approval status of the promoted tweet.
       - name: created_timestamp
@@ -230,8 +222,6 @@ models:
             - index
             - tweet_id 
     columns:
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
       - name: display_url
         description: The URL as it will be displayed.
       - name: expanded_url

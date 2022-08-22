@@ -1,7 +1,6 @@
 {% macro get_account_history_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "approval_status", "datatype": dbt_utils.type_string()},
     {"name": "business_id", "datatype": dbt_utils.type_string()},
     {"name": "business_name", "datatype": dbt_utils.type_string()},
@@ -23,7 +22,6 @@
 {% macro get_campaign_history_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "account_id", "datatype": dbt_utils.type_string()},
     {"name": "created_at", "datatype": dbt_utils.type_timestamp()},
     {"name": "currency", "datatype": dbt_utils.type_string()},
@@ -50,7 +48,6 @@
 {% macro get_line_item_history_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "advertiser_domain", "datatype": dbt_utils.type_string()},
     {"name": "advertiser_user_id", "datatype": dbt_utils.type_int()},
     {"name": "automatically_select_bid", "datatype": "boolean"},
@@ -84,7 +81,6 @@
 {% macro get_promoted_tweet_history_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "approval_status", "datatype": dbt_utils.type_string()},
     {"name": "created_at", "datatype": dbt_utils.type_timestamp()},
     {"name": "deleted", "datatype": "boolean"},
@@ -102,7 +98,6 @@
 {% macro get_tweet_url_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "display_url", "datatype": dbt_utils.type_string()},
     {"name": "expanded_url", "datatype": dbt_utils.type_string()},
     {"name": "index", "datatype": dbt_utils.type_int()},
@@ -118,7 +113,6 @@
 {% macro get_promoted_tweet_report_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "account_id", "datatype": dbt_utils.type_string()},
     {"name": "billed_charge_local_micro", "datatype": dbt_utils.type_int()},
     {"name": "clicks", "datatype": dbt_utils.type_int()},

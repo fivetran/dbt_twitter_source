@@ -1,7 +1,6 @@
 00:18:38  {% macro get_tweet_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "account_id", "datatype": dbt_utils.type_string()},
     {"name": "card_uri", "datatype": dbt_utils.type_string()},
     {"name": "coordinates_coordinates", "datatype": dbt_utils.type_string()},

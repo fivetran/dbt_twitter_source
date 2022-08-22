@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
+
 with source as (
 
     select *
@@ -23,7 +25,6 @@ fields as (
 final as (
 
     select
-        _fivetran_synced,
         account_id,
         created_at as created_timestamp,
         currency,

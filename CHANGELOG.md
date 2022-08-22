@@ -9,11 +9,19 @@ PR [#13](https://github.com/fivetran/dbt_twitter_source/pull/13) includes the fo
   - `stg_twitter_ads__line_item_keywords_report`: This can be disabled by setting the `twitter_ads__using_keywords` variable to `False`.
   - `stg_twitter_ads__tweet`
 
-- Inclusion of additional passthrough metrics: 
+- Inclusion of passthrough metrics:
   - `twitter_ads__line_item_report_passthrough_metrics`
   - `twitter_ads__campaign_report_passthrough_metrics`
   - `twitter_ads__line_item_keywords_report_passthrough_metrics`
   - `twitter_ads__promoted_tweet_report_passthrough_metrics`
+> This applies to all passthrough columns within the `dbt_twitter_source` package and not just the `twitter_ads__line_item_report_passthrough_metrics` example.
+```yml
+vars:
+  twitter_ads__line_item_report_passthrough_metrics:
+    - name: "my_field_to_include" # Required: Name of the field within the source.
+      alias: "field_alias" # Optional: If you wish to alias the field within the staging model.
+      transform_sql: "cast(field_alias as string)" # Optional: If you wish to define the datatype or apply a light transformation.
+```
 
 - README updates for easier navigation and use of the package.
 - Addition of identifier variables for each of the source tables to allow for further flexibility in source table direction within the dbt project.

@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
+
 with source as (
 
     select *
@@ -23,7 +25,6 @@ fields as (
 final as (
 
     select
-        _fivetran_synced,
         advertiser_domain,
         advertiser_user_id,
         automatically_select_bid,

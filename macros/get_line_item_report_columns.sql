@@ -1,7 +1,6 @@
 {% macro get_line_item_report_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "account_id", "datatype": dbt_utils.type_string()},
     {"name": "billed_charge_local_micro", "datatype": dbt_utils.type_int()},
     {"name": "clicks", "datatype": dbt_utils.type_int()},

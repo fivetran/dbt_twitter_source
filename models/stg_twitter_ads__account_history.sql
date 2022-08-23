@@ -38,6 +38,7 @@ final as (
         timezone_switch_at as timezone_switched_timestamp,
         updated_at as updated_timestamp,
         row_number() over (partition by id order by updated_at desc) = 1 as is_latest_version
+    
     from fields 
 )
 

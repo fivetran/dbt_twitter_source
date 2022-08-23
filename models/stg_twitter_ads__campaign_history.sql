@@ -45,6 +45,7 @@ final as (
         round(daily_budget_amount_local_micro / 1000000.0,2) as daily_budget_amount,
         round(total_budget_amount_local_micro / 1000000.0,2) as total_budget_amount,
         row_number() over (partition by id order by updated_at desc) = 1 as is_latest_version
+    
     from fields 
 )
 

@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
+
 with source as (
 
     select *
@@ -5,7 +7,7 @@ with source as (
 
 ),
 
-renamed as (
+fields as (
 
     select
     
@@ -20,10 +22,15 @@ renamed as (
 
 ), 
 
-url_fields as (
+final as (
 
     select
-        *,
+        display_url,
+        expanded_url,
+        index,
+        indices,
+        tweet_id,
+        url,
         {{ dbt_utils.split_part('expanded_url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('expanded_url') }} as url_host,
         '/' || {{ dbt_utils.get_url_path('expanded_url') }} as url_path,
@@ -32,8 +39,9 @@ url_fields as (
         {{ dbt_utils.get_url_parameter('expanded_url', 'utm_campaign') }} as utm_campaign,
         {{ dbt_utils.get_url_parameter('expanded_url', 'utm_content') }} as utm_content,
         {{ dbt_utils.get_url_parameter('expanded_url', 'utm_term') }} as utm_term
-    from renamed
+    
+    from fields
 
 )
 
-select * from url_fields
+select * from final

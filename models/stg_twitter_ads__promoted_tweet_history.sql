@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
+
 with source as (
 
     select *
@@ -5,7 +7,7 @@ with source as (
 
 ),
 
-renamed as (
+fields as (
 
     select
     
@@ -18,13 +20,21 @@ renamed as (
 
     from source
 
-), latest as (
+), 
+
+final as (
 
     select
-        *,
-        row_number() over (partition by promoted_tweet_id order by updated_timestamp desc) = 1 as is_latest_version
-    from renamed 
-
+        approval_status,
+        created_at as created_timestamp,
+        deleted as is_deleted,
+        entity_status,
+        id as promoted_tweet_id,
+        line_item_id,
+        tweet_id,
+        updated_at as updated_timestamp,
+        row_number() over (partition by id order by updated_at desc) = 1 as is_latest_version
+    from fields 
 )
 
-select * from latest
+select * from final

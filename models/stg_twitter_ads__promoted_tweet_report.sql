@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
+
 with source as (
 
     select *
@@ -21,8 +23,18 @@ renamed as (
 ), spend_calc as (
 
     select
-        *,
-        round(spend_micro / 1000000.0,2) as spend
+        {{ dbt_utils.date_trunc('day', 'date') }} as date_day,
+        account_id,
+        promoted_tweet_id,
+        placement,
+        clicks as clicks,
+        impressions as impressions,
+        billed_charge_local_micro as spend_micro,
+        round(billed_charge_local_micro / 1000000.0,2) as spend,
+        url_clicks as url_clicks
+
+        {{ fivetran_utils.fill_pass_through_columns('twitter_ads__promoted_tweet_report_passthrough_metrics') }}
+    
     from renamed
 
 )

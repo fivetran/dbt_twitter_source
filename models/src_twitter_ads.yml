@@ -4,10 +4,21 @@ sources:
   - name: twitter_ads
     schema: "{{ var('twitter_ads_schema', 'twitter_ads') }}"
     database: "{% if target.type != 'spark'%}{{ var('twitter_ads_database', target.database) }}{% endif %}"
+    
+    loader: fivetran
+    loaded_at_field: _fivetran_synced
+    freshness: 
+      warn_after: {count: 48, period: hour}
+      error_after: {count: 168, period: hour}
+
+    config:
+      enabled: "{{ var('ad_reporting__twitter_ads_enabled', true) }}"
+
     tables:
       - name: account_history
         description: Each record represents a version of each account. The versions can be differentiated by the updated_at timestamp.
-        columns:
+        identifier: "{{ var('twitter_ads_account_history_identifier', 'account_history') }}"
+        columns: 
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
           - name: approval_status
@@ -36,6 +47,7 @@ sources:
             description: The random encryption key used to has data.
       - name: campaign_history
         description: Each record represents a version of each campaign. The versions can be differentiated by the updated_at timestamp.
+        identifier: "{{ var('twitter_ads_campaign_history_identifier', 'campaign_history') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -75,6 +87,7 @@ sources:
             description: Reference to the funding instrument.
       - name: line_item_history
         description: Each record represents a version of each line item. The versions can be differentiated by the updated_at timestamp.
+        identifier: "{{ var('twitter_ads_line_item_history_identifier', 'line_item_history') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -128,6 +141,7 @@ sources:
             description: "{{ doc('updated_at') }}"
       - name: promoted_tweet_history
         description: Each record represents a version of each promoted tweet. The versions can be differentiated by the updated_at timestamp.
+        identifier: "{{ var('twitter_ads_promoted_tweet_history_identifier', 'promoted_tweet_history') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -149,6 +163,7 @@ sources:
             description: "{{ doc('updated_at') }}"
       - name: tweet_url
         description: Each record represents a URL used in a tweet.
+        identifier: "{{ var('twitter_ads_tweet_url_identifier', 'tweet_url') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -157,7 +172,7 @@ sources:
           - name: expanded_url
             description: The fully expanded URL.
           - name: index
-            description: The index of the URL within the tweet.
+            description: The index of the URL within the tweet (ie if there are multiple URLs in the tweet).
           - name: indices
             description: The start and end point of where the URL is placed in the tweet text.
           - name: tweet_id
@@ -165,7 +180,8 @@ sources:
           - name: url
             description: The 't.co' shortened URL.
       - name: promoted_tweet_report
-        description: Each record represents the performance of a promoted tweet on a given day.
+        description: Each record represents the performance of a promoted tweet on a given day, in its defined placement.
+        identifier: "{{ var('twitter_ads_promoted_tweet_report_identifier', 'promoted_tweet_report') }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -174,12 +190,100 @@ sources:
           - name: billed_charge_local_micro
             description: The spend for the promoted tweet on that day.
           - name: clicks
-            description: The clicks for the promoted tweet on that day.
+            description: The clicks for the promoted tweet on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
           - name: date
             description: The date of the performance.
           - name: impressions
-            description: The impressions for the promoted tweet on that day.BD
+            description: The impressions for the promoted tweet on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
           - name: promoted_tweet_id
             description: The ID of the related promoted tweet.
           - name: url_clicks
             description: The url clicks for the promoted tweet on that day.
+          - name: placement
+            description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
+      - name: tweet
+        description: Each record represents a tweet, promoted or not. 
+        identifier: "{{ var('twitter_ads_tweet_identifier', 'tweet') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: id
+            description: Unique identifier of the tweet.
+          - name: name 
+            description: If provided, the non-public title of the tweet. 
+          - name: full_text
+            description: Full text of the tweet's content.
+          - name: lang
+            description: Two-letter language code of the tweet. 
+      - name: campaign_report
+        description: Each record represents the performance of an ad campaign on a given day.
+        identifier: "{{ var('twitter_ads_campaign_report_identifier', 'campaign_report') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: billed_charge_local_micro
+            description: The spend for the campaign on that day, in micros and in whichever currency was selected during account creation.
+          - name: clicks
+            description: The clicks for the campaign on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
+          - name: date
+            description: The date of the performance.
+          - name: impressions
+            description: The impressions for the campaign on that day. This is the number of users who see a Promoted Ad either in their home timeline or search results.
+          - name: campaign_id
+            description: The ID of the ad campaign.
+          - name: url_clicks
+            description: The url clicks for the campaign on that day.
+          - name: placement
+            description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
+      - name: line_item_report
+        description: Each record represents the performance of a line item (ad group) on a given day.
+        identifier: "{{ var('twitter_ads_line_item_report_identifier', 'line_item_report') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: billed_charge_local_micro
+            description: The spend for the line item on that day, in micros and in whichever currency was selected during account creation.
+          - name: clicks
+            description: The clicks for the line item on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
+          - name: date
+            description: The date of the performance.
+          - name: impressions
+            description: The impressions for the line item on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
+          - name: line_item_id
+            description: The ID of the line item.
+          - name: url_clicks
+            description: The url clicks for the line item on that day.
+          - name: placement
+            description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
+      - name: line_item_keywords_report
+        description: Each record represents the performance of a line item (ad group) and keyword combination on a given day.
+        identifier: "{{ var('twitter_ads_line_item_keywords_report_identifier', 'line_item_keywords_report') }}"
+        config:
+          enabled: "{{ var('twitter_ads__using_keywords', true) and var('ad_reporting__twitter_ads_enabled', true) }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: account_id
+            description: The ID of the related account.
+          - name: billed_charge_local_micro
+            description: The spend for the line item + keyword on that day, in micros and in whichever currency was selected during account creation.
+          - name: clicks
+            description: The clicks for the line item + keyword on that day. Includes clicks on the URL (shortened or regular links), profile pic, screen name, username, detail, hashtags, and likes.
+          - name: date
+            description: The date of the performance.
+          - name: impressions
+            description: The impressions for the line item + keyword on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
+          - name: line_item_id
+            description: The ID of the line item.
+          - name: url_clicks
+            description: The url clicks for the line item + keyword on that day.
+          - name: segment
+            description: The keyword whose performance is being tracked.
+          - name: placement
+            description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.

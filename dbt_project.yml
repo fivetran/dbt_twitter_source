@@ -1,16 +1,13 @@
 name: 'twitter_ads_source'
-version: '0.5.0'
-
+version: '0.6.0'
 config-version: 2
-require-dbt-version: [">=1.0.0", "<2.0.0"]
-
+require-dbt-version: [">=1.2.0", "<2.0.0"]
 models:
   twitter_ads_source:
     +materialized: table
     +schema: twitter_ads_source
     tmp:
       +materialized: view
-
 vars:
   twitter_ads_source:
     account_history: "{{ source('twitter_ads','account_history') }}"
@@ -23,7 +20,6 @@ vars:
     campaign_report: "{{ source('twitter_ads','campaign_report') }}"
     line_item_report: "{{ source('twitter_ads','line_item_report') }}"
     line_item_keywords_report: "{{ source('twitter_ads','line_item_keywords_report') }}"
-
     twitter_ads__campaign_report_passthrough_metrics: []
     twitter_ads__line_item_report_passthrough_metrics: []
     twitter_ads__line_item_keywords_report_passthrough_metrics: []

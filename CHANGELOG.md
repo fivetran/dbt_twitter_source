@@ -1,3 +1,10 @@
+# dbt_twitter_source v0.5.1
+## Feature Enhancement
+- Addition of the `keyword_id` surrogate key within the `stg_twitter_ads__line_item_keywords_report`. This field is a combination of the account_id, line_item_id, segment, and placement fields. ([#17](https://github.com/fivetran/dbt_twitter_source/pull/17))
+
+## Under the Hood
+- Buildkite testing integration. ([#17](https://github.com/fivetran/dbt_twitter_source/pull/17))
+
 # dbt_twitter_source v0.5.0
 
 ## 🎉 Feature Enhancements 🎉

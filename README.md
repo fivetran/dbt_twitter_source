@@ -41,7 +41,7 @@ Include the following twitter_source package version in your `packages.yml` file
 ```yml
 # packages.yml
 packages:
-  - package: fivetran/twitter_source
+  - package: fivetran/twitter_ads_source
     version: [">=0.5.0", "<0.6.0"]
 ```
 

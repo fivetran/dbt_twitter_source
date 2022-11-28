@@ -1,3 +1,9 @@
+# dbt_twitter_source v0.5.1
+## Fixes
+- Fix the package name in the README
+## Contributors
+- [@johnf](https://github.com/johnf) ([#18](https://github.com/fivetran/dbt_twitter_source/pull/18))
+
 # dbt_twitter_source v0.5.0
 
 ## 🎉 Feature Enhancements 🎉

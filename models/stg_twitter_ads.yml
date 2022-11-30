@@ -326,10 +326,12 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - date_day
-            - line_item_id 
-            - keyword
-            - placement
+            - keyword_id
     columns:
+      - name: keyword_id
+        description: Unique key of the table built from the combination of 'account_id', 'line_item_id','segment', and 'placement' fields.
+        tests:
+          - not_null
       - name: account_id
         description: The ID of the related account.
       - name: spend_micro
@@ -346,18 +348,13 @@ models:
         description: The impressions for the line item + keyword on that day.  This is the number of users who see a Promoted Ad either in their home timeline or search results.
       - name: line_item_id
         description: The ID of the line item.
-        tests:
-          - not_null
       - name: url_clicks
         description: The url clicks for the line item + keyword on that day.
       - name: keyword
         description: The keyword whose performance is being tracked.
-        tests:
-          - not_null
       - name: placement
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
-        tests:
-          - not_null
+
   - name: stg_twitter_ads__tweet
     description: Each record represents a tweet, promoted or not. 
     columns:

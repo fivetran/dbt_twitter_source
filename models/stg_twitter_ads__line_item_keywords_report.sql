@@ -22,6 +22,7 @@ final as (
     
     select 
         {{ dbt_utils.date_trunc('day', 'date') }} as date_day,
+        {{ dbt_utils.surrogate_key(['account_id', 'line_item_id','segment','placement']) }} as keyword_id,
         account_id,
         line_item_id,
         segment as keyword,

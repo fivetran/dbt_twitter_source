@@ -1,6 +1,7 @@
 name: 'twitter_source_integration_tests'
 version: '0.6.0'
 
+
 profile: 'integration_tests'
 config-version: 2
 snapshot-paths: ["snapshots"]
@@ -20,7 +21,7 @@ vars:
   twitter_ads_line_item_report_identifier: "twitter_line_item_report_data"
   twitter_ads_account_report_identifier: "twitter_account_report_data"
   twitter_ads_line_item_keywords_report_identifier: "twitter_line_item_keywords_report_data"
-    
+
 seeds:
   twitter_source_integration_tests:
     +column_types:
@@ -32,7 +33,7 @@ seeds:
       +column_types:
         tweet_id: "{{ 'INT64' if target.type == 'bigquery' else 'bigint' }}"
 
-        
+
 dispatch:
   - macro_namespace: dbt_utils
     search_order: ['spark_utils', 'dbt_utils']

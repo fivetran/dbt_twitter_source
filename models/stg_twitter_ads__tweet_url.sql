@@ -31,7 +31,7 @@ final as (
         indices,
         tweet_id,
         url,
-        {{ dbt_utils.split_part('expanded_url', "'?'", 1) }} as base_url,
+        {{ dbt.split_part('expanded_url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('expanded_url') }} as url_host,
         '/' || {{ dbt_utils.get_url_path('expanded_url') }} as url_path,
         {{ dbt_utils.get_url_parameter('expanded_url', 'utm_source') }} as utm_source,

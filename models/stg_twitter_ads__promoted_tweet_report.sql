@@ -23,7 +23,7 @@ renamed as (
 ), spend_calc as (
 
     select
-        {{ dbt_utils.date_trunc('day', 'date') }} as date_day,
+        {{ dbt.date_trunc('day', 'date') }} as date_day,
         account_id,
         promoted_tweet_id,
         placement,

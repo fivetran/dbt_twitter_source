@@ -21,7 +21,7 @@ fields as (
 final as (
     
     select 
-        {{ dbt_utils.date_trunc('day', 'date') }} as date_day,
+        {{ dbt.date_trunc('day', 'date') }} as date_day,
         account_id,
         campaign_id,
         placement,

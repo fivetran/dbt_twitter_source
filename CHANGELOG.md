@@ -1,9 +1,8 @@
 # dbt_twitter_source v0.UPDATE.UPDATE
 
- ## Under the Hood:
-
-- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
-- Updated the pull request [templates](/.github).
+## Under the Hood:
+- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job. ([#19](https://github.com/fivetran/dbt_twitter_source/pull/19))
+- Updated the pull request [templates](/.github). ([#19](https://github.com/fivetran/dbt_twitter_source/pull/19))
 # dbt_twitter_source v0.6.0
 
 ## 🚨 Breaking Changes 🚨:

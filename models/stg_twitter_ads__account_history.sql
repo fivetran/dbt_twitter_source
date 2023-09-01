@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
 
 with source as (
@@ -25,6 +27,7 @@ fields as (
 final as (
 
     select
+        source_relation,
         approval_status,
         business_id,
         business_name,
@@ -37,7 +40,7 @@ final as (
         timezone,
         timezone_switch_at as timezone_switched_timestamp,
         updated_at as updated_timestamp,
-        row_number() over (partition by id order by updated_at desc) = 1 as is_latest_version
+        row_number() over (partition by source_relation, id order by updated_at desc) = 1 as is_latest_version
     
     from fields 
 )

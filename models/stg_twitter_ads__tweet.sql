@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
 
 with base as (
@@ -15,12 +17,19 @@ fields as (
                 staging_columns=get_tweet_columns()
             )
         }}
+    
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='twitter_union_schemas', 
+            union_database_variable='twitter_union_databases') 
+        }}
+
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
+        source_relation, 
         account_id,
         id as tweet_id,
         name,

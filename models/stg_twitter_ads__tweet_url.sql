@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
 
 with source as (
@@ -25,6 +27,7 @@ fields as (
 final as (
 
     select
+        source_relation,
         display_url,
         expanded_url,
         index,

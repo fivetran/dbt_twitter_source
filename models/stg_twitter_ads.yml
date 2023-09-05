@@ -6,9 +6,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - account_id
             - updated_timestamp
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: approval_status
         description: The approval status of the account.
       - name: business_id
@@ -42,9 +45,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - campaign_id
             - updated_timestamp    
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: account_id
         description: The ID of the related account.
       - name: created_timestamp
@@ -92,9 +98,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - line_item_id
             - updated_timestamp 
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: advertiser_domain
         description: The website domain for this advertiser, without the protocol specification.
       - name: advertiser_user_id
@@ -158,9 +167,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - promoted_tweet_id
             - updated_timestamp 
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: approval_status
         description: The approval status of the promoted tweet.
       - name: created_timestamp
@@ -186,10 +198,13 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - promoted_tweet_id 
             - placement
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: account_id
         description: The ID of the related account.
       - name: spend_micro
@@ -219,9 +234,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - index
             - tweet_id 
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: display_url
         description: The URL as it will be displayed.
       - name: expanded_url
@@ -259,10 +277,13 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - campaign_id 
             - placement
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: account_id
         description: The ID of the related account.
       - name: spend_micro
@@ -292,10 +313,13 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - line_item_id 
             - placement
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: account_id
         description: The ID of the related account.
       - name: spend_micro
@@ -325,9 +349,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - keyword_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: keyword_id
         description: Unique key of the table built from the combination of 'account_id', 'line_item_id','segment', and 'placement' fields.
         tests:
@@ -356,15 +383,21 @@ models:
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
 
   - name: stg_twitter_ads__tweet
-    description: Each record represents a tweet, promoted or not. 
+    description: Each record represents a tweet, promoted or not.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - tweet_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: account_id
         description: The ID of the related account.
       - name: tweet_id
         description: Unique identifier of the tweet.
         tests:
           - not_null
-          - unique
       - name: name 
         description: If provided, the non-public title of the tweet. 
       - name: full_text

@@ -14,6 +14,7 @@ The timestamp the account was last updated.
 {% docs deleted -%}
 Whether the record has been deleted or not.
 {%- enddocs %}
+
 {% docs source_relation %}
 The source of the record if the unioning functionality is being used. If not this field will be empty.
 {% enddocs %}

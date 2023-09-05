@@ -1,5 +1,3 @@
-ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
-
 {{ config(enabled=var('ad_reporting__twitter_ads_enabled', True)) }}
 
 with source as (
@@ -19,12 +17,18 @@ renamed as (
                 staging_columns=get_promoted_tweet_report_columns()
             )
         }}
+    
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='twitter_union_schemas', 
+            union_database_variable='twitter_union_databases') 
+        }}
 
     from source
 
 ), spend_calc as (
 
     select
+        source_relation,
         {{ dbt.date_trunc('day', 'date') }} as date_day,
         account_id,
         promoted_tweet_id,

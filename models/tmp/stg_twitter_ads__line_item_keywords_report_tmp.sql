@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__twitter_ads_ads_enabled','twitter_ads_ads__using_keywords'])) }}
+{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__twitter_ads_enabled','twitter_ads__using_keywords'])) }}
 
 {{
     fivetran_utils.union_data(

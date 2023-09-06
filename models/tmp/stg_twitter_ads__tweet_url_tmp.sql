@@ -7,7 +7,7 @@
         schema_variable='twitter_ads_schema', 
         default_database=target.database,
         default_schema='twitter_ads',
-        default_variable='tweet_url_source',
+        default_variable='tweet_url',
         union_schema_variable='twitter_ads_union_schemas',
         union_database_variable='twitter_ads_union_databases'
     )

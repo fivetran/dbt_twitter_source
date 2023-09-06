@@ -19,8 +19,8 @@ fields as (
         }}
     
         {{ fivetran_utils.source_relation(
-            union_schema_variable='twitter_union_schemas', 
-            union_database_variable='twitter_union_databases') 
+            union_schema_variable='twitter_ads_union_schemas', 
+            union_database_variable='twitter_ads_union_databases') 
         }}
 
     from source

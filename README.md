@@ -42,7 +42,7 @@ Include the following twitter_source package version in your `packages.yml` file
 # packages.yml
 packages:
   - package: fivetran/twitter_ads_source
-    version: [">=0.6.0", "<0.7.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.7.0", "<0.8.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 ## Step 3: Define database and schema variables

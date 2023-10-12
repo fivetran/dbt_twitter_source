@@ -17,6 +17,11 @@ fields as (
                 staging_columns=get_line_item_history_columns()
             )
         }}
+    
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='twitter_ads_union_schemas', 
+            union_database_variable='twitter_ads_union_databases') 
+        }}
 
     from source
 
@@ -25,6 +30,7 @@ fields as (
 final as (
 
     select
+        source_relation,
         advertiser_domain,
         advertiser_user_id,
         automatically_select_bid,
@@ -52,7 +58,7 @@ final as (
         round(bid_amount_local_micro / 1000000.0,2) as bid_amount,
         round(total_budget_amount_local_micro / 1000000.0,2) as total_budget_amount,
         round(target_cpa_local_micro / 1000000.0,2) as target_cpa,
-        row_number() over (partition by id order by updated_at desc) = 1 as is_latest_version
+        row_number() over (partition by source_relation, id order by updated_at desc) = 1 as is_latest_version
     
     from fields 
 )

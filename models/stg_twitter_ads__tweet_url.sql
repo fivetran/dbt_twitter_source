@@ -17,6 +17,11 @@ fields as (
                 staging_columns=get_tweet_url_columns()
             )
         }}
+    
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='twitter_ads_union_schemas', 
+            union_database_variable='twitter_ads_union_databases') 
+        }}
 
     from source
 
@@ -25,6 +30,7 @@ fields as (
 final as (
 
     select
+        source_relation,
         display_url,
         expanded_url,
         index,

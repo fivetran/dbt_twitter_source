@@ -1,6 +1,6 @@
 # dbt_twitter_source v0.8.0
 
-PR #something includes the following **BREAKING CHANGE** updates:
+[PR #27](https://github.com/fivetran/dbt_twitter_source/pull/27) includes the following **BREAKING CHANGE** updates:
 
 ## Feature Updates: Native Conversion Support
 We have added more robust support for conversions in our data models by doing the following:
@@ -12,11 +12,10 @@ We have added more robust support for conversions in our data models by doing th
     - `stg_twitter_ads__line_item_keywords_report`
     - `stg_twitter_ads__line_item_report`
     - `stg_twitter_ads__promoted_tweet_report`
-  - See README for more details.
+  - See [README](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#customizing-types-of-conversions) for more details.
 
 ## Under the Hood
 - Ensured the above changes maintain backwards compatibility with [existing passthrough column variables](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics). Created macros to check whether these fields are already being brought in via existing passthrough variables and ensure there are no duplicate column errors.
-
 
 # dbt_twitter_source v0.7.1
 

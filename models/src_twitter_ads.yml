@@ -202,9 +202,9 @@ sources:
           - name: placement
             description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
           - name: conversion_purchases_metric
-            description: Total number of purchases. The sum of post view, post engagement, and assisted purchases for both your website and mobile app.
+            description: Total number of purchases. The sum of post view, post engagement, and assisted purchases for both your website and mobile app. Included by the `twitter_ads__conversion_fields` variable by default.
           - name: conversion_custom_metric
-            description: The number of conversions of type CUSTOM.
+            description: The number of conversions of type CUSTOM. Included by the `twitter_ads__conversion_fields` variable by default.
           - name: mobile_conversion_payment_info_additions_assisted
             description: Number of **assisted** (engaged with ad but did not immediately convert) mobile conversions of type PAYMENT_INFO_ADDITION.
           - name: mobile_conversion_payment_info_additions_post_engagement
@@ -244,9 +244,9 @@ sources:
           - name: mobile_conversion_content_views_post_view
             description: Number of **post-view** mobile conversions of type CONTENT_VIEW.
           - name: conversion_purchases_sale_amount
-            description: The sale amount corresponding to PURCHASE conversion events.
+            description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
           - name: conversion_custom_sale_amount
-            description: The sale amount corresponding to PURCHASE conversion events.
+            description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
           - name: mobile_conversion_payment_info_additions_sale_amount
             description: The sale amount corresponding to mobile conversions of type PAYMENT_INFO_ADDITION.
           - name: mobile_conversion_add_to_wishlists_sale_amount

@@ -34,8 +34,8 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
-### Step 2: Install the package (skip if also using the `twitter_ads` transformation package)
-Include the following twitter_source package version in your `packages.yml` file.
+### Step 2: Install the package (skip if also using the `twitter_ads` or `ad_reporting` transformation package)
+If you are **not** using the downstream [Twitter Ads](https://github.com/fivetran/dbt_twitter_ads) transformation package and/or [Ad Reporting](https://github.com/fivetran/dbt_ad_reporting) combination package, include the following `twitter_source` package version in your `packages.yml` file.
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
 ```yml
@@ -64,6 +64,9 @@ vars:
 ```
 
 ### (Optional) Step 5: Additional configurations
+<details open><summary>Expand/Collapse details</summary>
+<br>
+
 #### Union multiple connectors
 If you have multiple twitter ads connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `twitter_ads_union_schemas` OR `twitter_ads_union_databases` variables (cannot do both) in your root `dbt_project.yml` file:
 
@@ -76,8 +79,37 @@ vars:
 
 To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
+#### Customizing Types of Conversions
+The package will include conversion metrics provided to the following variables:
+
+| Variable    | Definition | Default Values |
+| -------- | -------------- | -------------- |
+| `twitter_ads__conversion_fields`  | Which fields should be included in calculating total number of conversions. | `conversion_purchases_metric`, `conversion_custom_metric` |
+| `twitter_ads__conversion_sale_amount_fields` |  Which `*_sale_amount` fields should be included in calculating the total value of conversions.  | `conversion_purchases_sale_amount`, `conversion_custom_sale_amount` |
+
+By default, the data models include purchases and custom conversion events in both variables. However, you can configure each to include any types of conversions available in the Twitter Ads source `*_report` tables:
+
+```yml
+# dbt_project.yml
+vars:
+    twitter_ads__conversion_fields:
+        - conversion_purchases_metric
+        - conversion_sign_ups_metric
+        - mobile_conversion_payment_info_additions_post_engagement
+        - mobile_conversion_add_to_wishlists_post_engagement
+        - mobile_conversion_add_to_carts_post_engagement
+        - mobile_conversion_checkouts_initiated_post_engagement
+        - <any conversion field you want to include>
+    twitter_ads__conversion_sale_amount_fields: 
+        - conversion_purchases_sale_amount
+        - conversion_sign_ups_sale_amount
+        - <any conversion value/sale amount field you want to include>
+```
+
+We recommend using the same types of conversion events for `twitter_ads__conversion_fields` and `twitter_ads__conversion_sale_amount_fields`, but this is not required.
+
 #### Passing Through Additional Metrics
-By default, this package will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
+Besides the above conversion fields, this package by default will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
 
 > IMPORTANT: Make sure to exercise due diligence when adding metrics to these models. The metrics added by default (taps, impressions, and spend) have been vetted by the Fivetran team, maintaining this package for accuracy. There are metrics included within the source reports, such as metric averages, which may be inaccurately represented at the grain for reports created in this package. You must ensure that whichever metrics you pass through are appropriate to aggregate at the respective reporting levels in this package.
 
@@ -115,6 +147,8 @@ If an individual source table has a different name than the package expects, add
 vars:
     twitter_ads_<default_source_table_name>_identifier: your_table_name 
 ```
+
+</details>
 
 ### (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 <details><summary>Expand for details</summary>

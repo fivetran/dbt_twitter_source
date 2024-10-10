@@ -22,6 +22,7 @@ We have added more robust support for conversions in our data models by doing th
 - Highlighted all metrics included in the package by default. Previously, `url_clicks` and `spend_micro` were missing from this README [section](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics).
 - Documented how to configure the new `twitter_ads__conversion_fields` and `twitter_ads__conversion_sale_amount_fields` variables [here](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#customizing-types-of-conversions).
 - Added Contributors [subsection](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#contributors) to README.
+- Document commonly used conversion fields in yml.
 
 ## Contributors
 - [Seer Interactive](https://www.seerinteractive.com/?utm_campaign=Fivetran%20%7C%20Models&utm_source=Fivetran&utm_medium=Fivetran%20Documentation)

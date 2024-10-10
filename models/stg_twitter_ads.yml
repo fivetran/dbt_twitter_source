@@ -229,6 +229,14 @@ models:
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
         tests:
           - not_null
+      - name: conversion_purchases_metric
+        description: Total number of purchases. The sum of post view, post engagement, and assisted purchases for both your website and mobile app. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_custom_metric
+        description: The number of conversions of type CUSTOM. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_purchases_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
+      - name: conversion_custom_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
   - name: stg_twitter_ads__tweet_url
     description: Each record represents a URL used in a tweet.
     tests:
@@ -308,6 +316,14 @@ models:
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
         tests:
           - not_null
+      - name: conversion_purchases_metric
+        description: Total number of purchases. The sum of post view, post engagement, and assisted purchases for both your website and mobile app. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_custom_metric
+        description: The number of conversions of type CUSTOM. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_purchases_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
+      - name: conversion_custom_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
   - name: stg_twitter_ads__line_item_report
     description: Each record represents the performance of a line item (ad group) on a given day, for its placement in Twitter.
     tests:
@@ -344,6 +360,14 @@ models:
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
         tests:
           - not_null
+      - name: conversion_purchases_metric
+        description: Total number of purchases. The sum of post view, post engagement, and assisted purchases for both your website and mobile app. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_custom_metric
+        description: The number of conversions of type CUSTOM. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_purchases_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
+      - name: conversion_custom_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
   - name: stg_twitter_ads__line_item_keywords_report
     description: Each record represents the performance of a line item (ad group) and keyword combination on a given day, for its placement in Twitter.
     tests:
@@ -381,7 +405,15 @@ models:
         description: The keyword whose performance is being tracked.
       - name: placement
         description: Where on Twitter the ad is being displayed. Possible values include 'ALL_ON_TWITTER', 'PUBLISHER_NETWORK', 'TWITTER_PROFILE', 'TWITTER_SEARCH', 'TWITTER_TIMELINE', and 'TAP_*', which are more granular options for `PUBLISHER_NETWORK`.
-
+      - name: conversion_purchases_metric
+        description: Total number of purchases. The sum of post view, post engagement, and assisted purchases for both your website and mobile app. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_custom_metric
+        description: The number of conversions of type CUSTOM. Included by the `twitter_ads__conversion_fields` variable by default.
+      - name: conversion_purchases_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
+      - name: conversion_custom_sale_amount
+        description: The sale amount corresponding to PURCHASE conversion events. Included by the `twitter_ads__conversion_sale_amount_fields` variable by default.
+        
   - name: stg_twitter_ads__tweet
     description: Each record represents a tweet, promoted or not.
     tests:

@@ -1,3 +1,25 @@
+# dbt_twitter_source v0.8.0
+
+[PR #27](https://github.com/fivetran/dbt_twitter_source/pull/27) includes the following **BREAKING CHANGE** updates:
+
+## Feature Updates: Native Conversion Support
+We have added more robust support for conversions in our data models by doing the following:
+- Created the `twitter_ads__conversion_fields` and `twitter_ads__conversion_sale_amount_fields` variables to pass through conversion metrics (total number and monetary value, respectively).
+  - By default, `twitter_ads__conversion_fields` will include `conversion_purchases_metric` and `conversion_custom_metric`.
+  - By default, `twitter_ads__conversion_sale_amount_fields` will include `conversion_purchases_sale_amount` and `conversion_custom_sale_amount`.
+  - These conversion fields will now populate in the following models:
+    - `stg_twitter_ads__campaign_report`
+    - `stg_twitter_ads__line_item_keywords_report`
+    - `stg_twitter_ads__line_item_report`
+    - `stg_twitter_ads__promoted_tweet_report`
+  - See [README](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#customizing-types-of-conversions) for more details.
+
+## Under the Hood
+- Ensured the above changes maintain backwards compatibility with [existing passthrough column variables](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics). Created macros to check whether these fields are already being brought in via existing passthrough variables and ensure there are no duplicate column errors.
+
+## Documentation
+- Highlighted all metrics included in the package by default. Previously, `url_clicks` and `spend_micro` were missing from this README [section](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics).
+
 # dbt_twitter_source v0.7.1
 
 [PR #25](https://github.com/fivetran/dbt_twitter_source/pull/25) includes the following updates:

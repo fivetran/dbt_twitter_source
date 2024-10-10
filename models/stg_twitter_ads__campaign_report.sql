@@ -38,7 +38,16 @@ final as (
         round(billed_charge_local_micro / 1000000.0,2) as spend,
         url_clicks
 
-        {{ fivetran_utils.fill_pass_through_columns('twitter_ads__campaign_report_passthrough_metrics') }}
+
+        {% for conversion in var('twitter_ads__conversion_fields', []) %}
+            , coalesce(cast({{ conversion }} as {{ dbt.type_bigint() }}), 0) as {{ conversion }}
+        {% endfor %}
+
+        {% for conversion_value in var('twitter_ads__conversion_sale_amount_fields', []) %}
+            , coalesce(cast({{ conversion_value }} as {{ dbt.type_float() }}), 0) as {{ conversion_value }}
+        {% endfor %}
+
+        {{ twitter_ads_fill_pass_through_columns(pass_through_fields=var('twitter_ads__campaign_report_passthrough_metrics'), except=(var('twitter_ads__conversion_fields') + var('twitter_ads__conversion_sale_amount_fields'))) }}
     
     from fields
 )

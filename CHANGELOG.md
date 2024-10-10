@@ -12,13 +12,19 @@ We have added more robust support for conversions in our data models by doing th
     - `stg_twitter_ads__line_item_keywords_report`
     - `stg_twitter_ads__line_item_report`
     - `stg_twitter_ads__promoted_tweet_report`
-  - See [README](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#customizing-types-of-conversions) for more details.
+  - See [README](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#customizing-types-of-conversions) for more details on how to configure these variables.
 
 ## Under the Hood
-- Ensured the above changes maintain backwards compatibility with [existing passthrough column variables](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics). Created macros to check whether these fields are already being brought in via existing passthrough variables and ensure there are no duplicate column errors.
+- Ensured the above changes maintain backwards compatibility with [existing passthrough column variables](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics).
+  - Created macros to check whether these fields are already being brought in via existing passthrough variables and ensure there are no duplicate column errors.
 
 ## Documentation
 - Highlighted all metrics included in the package by default. Previously, `url_clicks` and `spend_micro` were missing from this README [section](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics).
+- Documented how to configure the new `twitter_ads__conversion_fields` and `twitter_ads__conversion_sale_amount_fields` variables [here](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#customizing-types-of-conversions).
+- Added Contributors [subsection](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#contributors) to README.
+
+## Contributors
+- [Seer Interactive](https://www.seerinteractive.com/?utm_campaign=Fivetran%20%7C%20Models&utm_source=Fivetran&utm_medium=Fivetran%20Documentation)
 
 # dbt_twitter_source v0.7.1
 

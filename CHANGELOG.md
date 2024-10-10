@@ -17,6 +17,9 @@ We have added more robust support for conversions in our data models by doing th
 ## Under the Hood
 - Ensured the above changes maintain backwards compatibility with [existing passthrough column variables](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics). Created macros to check whether these fields are already being brought in via existing passthrough variables and ensure there are no duplicate column errors.
 
+## Documentation
+- Highlighted all metrics included in the package by default. Previously, `url_clicks` and `spend_micro` were missing from this README [section](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics).
+
 # dbt_twitter_source v0.7.1
 
 [PR #25](https://github.com/fivetran/dbt_twitter_source/pull/25) includes the following updates:

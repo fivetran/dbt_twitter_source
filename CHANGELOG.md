@@ -4,7 +4,7 @@
 
 ## Feature Updates: Native Conversion Support
 We have added more robust support for conversions in our data models by doing the following:
-- Created the `twitter_ads__conversion_fields` and `twitter_ads__conversion_sale_amount_fields` variables to pass through conversion metrics (total number and monetary value, respectively).
+- Created the `twitter_ads__conversion_fields` and `twitter_ads__conversion_sale_amount_fields` variables to pass through conversion metrics (total number and monetary value, respectively). Conversion metrics are split into these 2 variables due to the N:1 relationship between Twitter conversions and their conversion value fields. 
   - By default, `twitter_ads__conversion_fields` will include `conversion_purchases_metric` and `conversion_custom_metric`.
   - By default, `twitter_ads__conversion_sale_amount_fields` will include `conversion_purchases_sale_amount` and `conversion_custom_sale_amount`.
   - These conversion fields will now populate in the following models:
@@ -13,6 +13,7 @@ We have added more robust support for conversions in our data models by doing th
     - `stg_twitter_ads__line_item_report`
     - `stg_twitter_ads__promoted_tweet_report`
   - See [README](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#customizing-types-of-conversions) for more details on how to configure these variables.
+  - See the parallel [release](https://github.com/fivetran/dbt_twitter/releases/tag/v0.8.0) of `twitter_ads` for details on how these variables are summed together and leveraged in downstream transformations.
 
 ## Under the Hood
 - Ensured the above changes maintain backwards compatibility with [existing passthrough column variables](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics).

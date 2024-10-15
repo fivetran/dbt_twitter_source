@@ -11,7 +11,12 @@
     {"name": "url_clicks", "datatype": dbt.type_int()}
 ] %}
 
-{{ fivetran_utils.add_pass_through_columns(columns, var('twitter_ads__campaign_report_passthrough_metrics')) }}
+{{ fivetran_utils.add_pass_through_columns(columns, var('twitter_ads__conversion_fields')) }}
+
+{{ fivetran_utils.add_pass_through_columns(columns, var('twitter_ads__conversion_sale_amount_fields')) }}
+
+{# Doing it this way in case users were bringing in conversion metrics via passthrough columns prior to us adding them by default #}
+{{ twitter_ads_add_pass_through_columns(base_columns=columns, pass_through_fields=var('twitter_ads__campaign_report_passthrough_metrics'), except_fields=(var('twitter_ads__conversion_fields') + var('twitter_ads__conversion_sale_amount_fields'))) }}
 
 {{ return(columns) }}
 

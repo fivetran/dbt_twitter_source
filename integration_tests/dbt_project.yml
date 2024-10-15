@@ -1,5 +1,5 @@
 name: 'twitter_source_integration_tests'
-version: '0.7.1'
+version: '0.8.0'
 
 
 profile: 'integration_tests'
@@ -9,6 +9,11 @@ snapshot-paths: ["snapshots"]
 vars:
   # twitter_source:
   twitter_ads_schema: twitter_ads_source_integration_tests
+
+  twitter_ads__line_item_report_passthrough_metrics:
+    - name: "conversion_purchases_metric"
+    - name: "conversion_custom_sale_amount"
+      alias: "custom_conversion_value"
 
   twitter_ads_account_history_identifier: "twitter_account_history_data"
   twitter_ads_campaign_history_identifier: "twitter_campaign_history_data"

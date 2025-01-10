@@ -1,3 +1,8 @@
+# dbt_twitter_source version.version
+
+## Documentation
+- Corrected references to connectors and connections in the README. ([#29](https://github.com/fivetran/dbt_twitter_source/pull/29))
+
 # dbt_twitter_source v0.8.0
 
 [PR #27](https://github.com/fivetran/dbt_twitter_source/pull/27) includes the following **BREAKING CHANGE** updates:

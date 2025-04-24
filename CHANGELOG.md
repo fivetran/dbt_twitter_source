@@ -1,4 +1,18 @@
-# dbt_twitter_source version.version
+# dbt_twitter_source v0.9.0
+
+## Schema Changes
+**4 total changes • 0 possible breaking changes**
+| **Model** | **Change type** | **Old name** | **New name** | **Notes** |
+| ---------------- | --------------- | ------------ | ------------ | --------- |
+| stg_twitter_ads__campaign_locations_report | New Model |   |   |  Uses `campaign_locations_report` source table  |
+| stg_twitter_ads__campaign_locations_report_tmp | New Model |   |   | Uses `campaign_locations_report` source table   |
+| stg_twitter_ads__campaign_regions_report | New Model |   |   |  Uses `campaign_regions_report` source table  |
+| stg_twitter_ads__campaign_regions_report_tmp | New Model |   |   | Uses `campaign_regions_report` source table   |
+
+## Feature Updates
+- Added the `twitter_ads__using_campaign_locations_report` and `twitter_ads__using_campaign_regions_report` variables, which can be used to enable or disable the above transformations related to the `campaign_locations_report` and `campaign_regions_report` tables.
+  - These variables are dynamically set for Fivetran Quickstart users, but **false** by default otherwise. See README for more details.
+- Introduced the `twitter_ads__campaign_locations_report_passthrough_metrics` and `twitter_ads__campaign_regions_report_passthrough_metrics` passthrough column variables, which can be used to pass through additional metrics fields from their respective source reports to downstream models. See [README](https://github.com/fivetran/dbt_twitter_source?tab=readme-ov-file#passing-through-additional-metrics) for more details.
 
 ## Documentation
 - Corrected references to connectors and connections in the README. ([#29](https://github.com/fivetran/dbt_twitter_source/pull/29))

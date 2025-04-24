@@ -1,5 +1,5 @@
 name: 'twitter_ads_source'
-version: '0.8.0'
+version: '0.9.0'
 
 
 config-version: 2
@@ -22,10 +22,14 @@ vars:
     campaign_report: "{{ source('twitter_ads','campaign_report') }}"
     line_item_report: "{{ source('twitter_ads','line_item_report') }}"
     line_item_keywords_report: "{{ source('twitter_ads','line_item_keywords_report') }}"
+    campaign_locations_report: "{{ source('twitter_ads','campaign_locations_report') }}"
+    campaign_regions_report: "{{ source('twitter_ads','campaign_regions_report') }}"
     twitter_ads__campaign_report_passthrough_metrics: []
     twitter_ads__line_item_report_passthrough_metrics: []
     twitter_ads__line_item_keywords_report_passthrough_metrics: []
     twitter_ads__promoted_tweet_report_passthrough_metrics: []
+    twitter_ads__campaign_locations_report_passthrough_metrics: []
+    twitter_ads__campaign_regions_report_passthrough_metrics: []
 
   twitter_ads__conversion_fields:
     - conversion_purchases_metric

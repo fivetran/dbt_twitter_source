@@ -42,7 +42,7 @@ If you are **not** using the downstream [Twitter Ads](https://github.com/fivetra
 # packages.yml
 packages:
   - package: fivetran/twitter_ads_source
-    version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.9.0", "<0.10.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 ### Step 3: Define database and schema variables
@@ -55,12 +55,27 @@ vars:
     twitter_ads_database: your_destination_name 
 ```
 
-### Step 4: Disabling Keyword Models
+### Step 4: Disabling or Enabling Models
+#### Keyword Mdodels
 This package takes into consideration that not every Twitter Ads account tracks `keyword` performance, and allows you to disable the corresponding functionality by adding the following variable configuration:
 ```yml
 # dbt_project.yml
 vars:
-    twitter_ads__using_keywords: False # Default = true
+    twitter_ads__using_keywords: False # Default = true. Dynamically set for you if using the Twitter Ads transform package via Fivetran Quickstart
+```
+
+#### Country and Region Reports
+This package uses the `campaign_locations_report` and `campaign_regions_report` [pre-built](https://fivetran.com/docs/connectors/applications/twitter-ads#campaigntables) reports, but takes into consideration that not every user may use these tables.
+
+If you are running the Twitter Ads transform package via Fivetran Quickstart, transformations of the above tables will be dynamically enabled or disabled. Otherwise, transformations of these tables are **disabled** by default.
+
+To enable transformations of the above geo-focused campaign reports, add the following variable configurations to your root `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+vars:
+  twitter_ads__using_campaign_locations_report: True # False by default. Will enable/disable use of the `campaign_locations_report`
+  twitter_ads__using_campaign_regions_report: True # False by default. Will enable/disable use of the `campaign_regions_report`
 ```
 
 ### (Optional) Step 5: Additional configurations
@@ -124,6 +139,10 @@ vars:
     twitter_ads__line_item_keywords_report_passthrough_metrics: 
         - name: "that_field"
     twitter_ads__promoted_tweet_report_passthrough_metrics: 
+        - name: "that_field"
+    twitter_ads__campaign_locations_report_passthrough_metrics: 
+        - name: "that_field"
+    twitter_ads__campaign_regions_report_passthrough_metrics: 
         - name: "that_field"
 ```
 

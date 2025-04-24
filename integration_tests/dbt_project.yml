@@ -38,7 +38,8 @@ seeds:
     twitter_promoted_tweet_history_data:
       +column_types:
         tweet_id: "{{ 'INT64' if target.type == 'bigquery' else 'bigint' }}"
-
+  +docs:
+    show: false
 
 dispatch:
   - macro_namespace: dbt_utils

@@ -16,6 +16,7 @@
 
 ## Documentation
 - Corrected references to connectors and connections in the README. ([#29](https://github.com/fivetran/dbt_twitter_source/pull/29))
+- Adjusted header format in the README. ([#30](https://github.com/fivetran/dbt_twitter_source/pull/30))
 
 # dbt_twitter_source v0.8.0
 

@@ -1,4 +1,3 @@
-Found 20 models, 28 data tests, 12 sources, 773 macros
 {% macro get_campaign_locations_report_columns() %}
 
 {% set columns = [

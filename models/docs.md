@@ -18,3 +18,11 @@ Whether the record has been deleted or not.
 {% docs source_relation %}
 The source of the record if the unioning functionality is being used. If not this field will be empty.
 {% enddocs %}
+
+{% docs country %}
+Long-form name of the country being reported on.
+{% enddocs %}
+
+{% docs region %}
+Long-form name of the geopgraphic region being reported on.
+{% enddocs %}

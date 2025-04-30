@@ -1,4 +1,6 @@
-<p align="center">
+# Twitter Ads Source dbt Package ([Docs](https://fivetran.github.io/dbt_twitter_source/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_twitter_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -9,8 +11,6 @@
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
-
-# Twitter Ads Source dbt Package ([Docs](https://fivetran.github.io/dbt_twitter_source/))
 
 ## What does this dbt package do?
 - Materializes [Twitter Ads staging tables](https://fivetran.github.io/dbt_twitter_source/#!/overview/twitter_source/models/?g_v=1&g_e=seeds) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/twitter-ads#schemainformation). These staging tables clean, test, and prepare your Twitter Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/twitter-ads) for analysis by doing the following:
@@ -42,7 +42,7 @@ If you are **not** using the downstream [Twitter Ads](https://github.com/fivetra
 # packages.yml
 packages:
   - package: fivetran/twitter_ads_source
-    version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.9.0", "<0.10.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 ### Step 3: Define database and schema variables
@@ -55,12 +55,27 @@ vars:
     twitter_ads_database: your_destination_name 
 ```
 
-### Step 4: Disabling Keyword Models
+### Step 4: Disabling or Enabling Models
+#### Keywords
 This package takes into consideration that not every Twitter Ads account tracks `keyword` performance, and allows you to disable the corresponding functionality by adding the following variable configuration:
 ```yml
 # dbt_project.yml
 vars:
-    twitter_ads__using_keywords: False # Default = true
+    twitter_ads__using_keywords: False # Default = true. Dynamically set for you if using the Twitter Ads transform package via Fivetran Quickstart
+```
+
+#### Country and Region Reports
+This package uses the `campaign_locations_report` and `campaign_regions_report` [pre-built](https://fivetran.com/docs/connectors/applications/twitter-ads#campaigntables) reports, but takes into consideration that not every user may use these tables.
+
+If you are running the Twitter Ads transform package via Fivetran Quickstart, transformations of the above tables will be dynamically enabled or disabled. Otherwise, transformations of these tables are **disabled** by default.
+
+To enable transformations of the above geo-focused campaign reports, add the following variable configurations to your root `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+vars:
+  twitter_ads__using_campaign_locations_report: True # False by default. Will enable/disable use of the `campaign_locations_report`
+  twitter_ads__using_campaign_regions_report: True # False by default. Will enable/disable use of the `campaign_regions_report`
 ```
 
 ### (Optional) Step 5: Additional configurations
@@ -108,9 +123,9 @@ vars:
 > We recommend using the same *types* of conversion events for `twitter_ads__conversion_fields` and `twitter_ads__conversion_sale_amount_fields` (especially if using the `twitter_ads` [transformation package](https://github.com/fivetran/dbt_twitter)), but this is not required. We chose to split conversions and conversion values into 2 distinct variables due to the N:1 relationship beteen conversions and conversion value fields.
 
 #### Passing Through Additional Metrics
-Besides the above conversion fields, this package by default will select `clicks`, `url_clicks`, `impressions`, `spend` (calculated from `billed_charge_local_micro`), and `spend_micro` (aliased from `billed_charge_local_micro`) from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
+In addition to the above conversion fields, this package by default will select `clicks`, `url_clicks`, `impressions`, `spend` (calculated from `billed_charge_local_micro`), and `spend_micro` (aliased from `billed_charge_local_micro`) from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
 
-> IMPORTANT: Make sure to exercise due diligence when adding metrics to these models. The metrics added by default (taps, impressions, and spend) have been vetted by the Fivetran team, maintaining this package for accuracy. There are metrics included within the source reports, such as metric averages, which may be inaccurately represented at the grain for reports created in this package. You must ensure that whichever metrics you pass through are appropriate to aggregate at the respective reporting levels in this package.
+> IMPORTANT: Make sure to exercise due diligence when adding metrics to these models. The metrics added by default (taps, impressions, spend, and conversions) have been vetted by the Fivetran team, maintaining this package for accuracy. There are metrics included within the source reports, such as metric averages, which may be inaccurately represented at the grain for reports created in this package. You must ensure that whichever metrics you pass through are appropriate to aggregate at the respective reporting levels in this package.
 
 ```yml
 # dbt_project.yml
@@ -124,6 +139,10 @@ vars:
     twitter_ads__line_item_keywords_report_passthrough_metrics: 
         - name: "that_field"
     twitter_ads__promoted_tweet_report_passthrough_metrics: 
+        - name: "that_field"
+    twitter_ads__campaign_locations_report_passthrough_metrics: 
+        - name: "that_field"
+    twitter_ads__campaign_regions_report_passthrough_metrics: 
         - name: "that_field"
 ```
 

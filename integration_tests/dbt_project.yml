@@ -1,5 +1,5 @@
 name: 'twitter_source_integration_tests'
-version: '0.8.0'
+version: '0.9.0'
 
 
 profile: 'integration_tests'
@@ -10,10 +10,15 @@ vars:
   # twitter_source:
   twitter_ads_schema: twitter_ads_source_integration_tests
 
+  # Commend OUT for docs generation
   twitter_ads__line_item_report_passthrough_metrics:
     - name: "conversion_purchases_metric"
     - name: "conversion_custom_sale_amount"
       alias: "custom_conversion_value"
+
+  # Comment IN for docs generation
+  # twitter_ads__using_campaign_locations_report: true
+  # twitter_ads__using_campaign_regions_report: true
 
   twitter_ads_account_history_identifier: "twitter_account_history_data"
   twitter_ads_campaign_history_identifier: "twitter_campaign_history_data"
@@ -26,7 +31,8 @@ vars:
   twitter_ads_line_item_report_identifier: "twitter_line_item_report_data"
   twitter_ads_account_report_identifier: "twitter_account_report_data"
   twitter_ads_line_item_keywords_report_identifier: "twitter_line_item_keywords_report_data"
-
+  twitter_ads_campaign_locations_report_identifier: "twitter_campaign_locations_report_data"
+  twitter_ads_campaign_regions_report_identifier: "twitter_campaign_regions_report_data"
 seeds:
   twitter_source_integration_tests:
     +column_types:
@@ -37,7 +43,8 @@ seeds:
     twitter_promoted_tweet_history_data:
       +column_types:
         tweet_id: "{{ 'INT64' if target.type == 'bigquery' else 'bigint' }}"
-
+  +docs:
+    show: false
 
 dispatch:
   - macro_namespace: dbt_utils

@@ -1,3 +1,8 @@
+# dbt_twitter_source v0.10.1
+
+## Bug Fix
+- Replaces references to the deprecated `CAMPAIGN_LOCATIONS_REPORT` AND `CAMPAIGN_REGIONS_REPORT` `segment` field with `segment_name`, as this field was renamed in these tables in [June 2023](https://fivetran.com/docs/connectors/applications/twitter-ads/changelog#june2023).
+
 # dbt_twitter_source v0.10.0
 
 [PR #31](https://github.com/fivetran/dbt_twitter_source/pull/31) includes the following updates:

@@ -2,6 +2,7 @@
 
 {% set columns = [
     {"name": "segment_name", "datatype": dbt.type_string()},
+    {"name": "segment", "datatype": dbt.type_string()},
     {"name": "account_id", "datatype": dbt.type_string()},
     {"name": "billed_charge_local_micro", "datatype": dbt.type_int()},
     {"name": "campaign_id", "datatype": dbt.type_string()},

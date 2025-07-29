@@ -1,7 +1,11 @@
 # dbt_twitter_source v0.10.1
 
-## Bug Fix
-- Replaces references to the deprecated `CAMPAIGN_LOCATIONS_REPORT` AND `CAMPAIGN_REGIONS_REPORT` `segment` field with `segment_name`, as this field was renamed in these tables in [June 2023](https://fivetran.com/docs/connectors/applications/twitter-ads/changelog#june2023).
+## Bug Fixes
+
+[PR #33](https://github.com/fivetran/dbt_twitter_source/pull/33) includes the following update:
+
+- In `stg_twitter_ads__campaign_locations_report` and `stg_twitter_ads__campaign_regions_report`, coalesces `segment` with `segment_name`, as `segment` was renamed to `segment_name` in the `CAMPAIGN_LOCATIONS_REPORT` and `CAMPAIGN_REGIONS_REPORT` source tables in [June 2023](https://fivetran.com/docs/connectors/applications/twitter-ads/changelog#june2023) for most users.
+  - In v0.9.0 and v0.10.0 of the package, most users likely had null `country` and `region` values, which this release resolves.
 
 ### Under the Hood - July 2025 Updates
 
@@ -9,17 +13,9 @@
 
 - Updated conditions in `.github/workflows/auto-release.yml`.
 - Added `.github/workflows/generate-docs.yml`.
-- Added `+docs: show: False` to `integration_tests/dbt_project.yml`.
 - Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`.
-- Updated `maintainer_pull_request_template.md` with improved checklist.
-- Refreshed README tag block:
-  - Standardized Quickstart-compatible badge set
-  - Left-aligned and positioned below the H1 title.
+- Standardized README Quickstart-compatible badge set
 - Updated Python image version to `3.10.13` in `pipeline.yml`.
-- Added `CI_DATABRICKS_DBT_CATALOG` to:
-  - `.buildkite/hooks/pre-command` (as an export)
-  - `pipeline.yml` (under the `environment` block, after `CI_DATABRICKS_DBT_TOKEN`)
-- Added `certifi==2025.1.31` to `requirements.txt` (if missing).
 - Updated `.gitignore` to exclude additional DBT, Python, and system artifacts.
 
 # dbt_twitter_source v0.10.0

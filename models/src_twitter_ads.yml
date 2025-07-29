@@ -537,7 +537,7 @@ sources:
         config:
           enabled: "{{ var('ad_reporting__twitter_ads_enabled', true) and var('twitter_ads__using_campaign_locations_report', false) }}"
         columns:
-          - name: segment 
+          - name: segment_name 
             description: "{{ doc('country') }}"
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
@@ -624,7 +624,7 @@ sources:
         config:
           enabled: "{{ var('ad_reporting__twitter_ads_enabled', true) and var('twitter_ads__using_campaign_regions_report', false) }}"
         columns:
-          - name: segment 
+          - name: segment_name 
             description: "{{ doc('region') }}"
           - name: location_type 
             description: Type of umbrella `LOCATION`. Likely to be `COUNTRIES`.

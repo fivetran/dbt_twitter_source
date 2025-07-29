@@ -1,4 +1,4 @@
-segment,account_id,billed_charge_local_micro,campaign_id,clicks,date,impressions,placement,url_clicks
+segment_name,account_id,billed_charge_local_micro,campaign_id,clicks,date,impressions,placement,url_clicks
 United States,18ce54lbsn8,123400,bjfji,25,2025-04-10 09:00:00,1500,ALL_ON_TWITTER,18
 Japan,18ce54lbsn8,98500,bjfi4,12,2025-04-11 10:00:00,1200,PUBLISHER_NETWORK,10
 France,18ce54lbsn8,134000,9rf3e,30,2025-04-12 11:00:00,1800,ALL_ON_TWITTER,25

@@ -27,7 +27,8 @@ final as (
     select 
         source_relation, 
         {{ dbt.date_trunc('day', 'date') }} as date_day,
-        segment as country,
+        {# QUESTION: do any twitter ad connections still have segment instead of segment? ie should we do a coalesce #}
+        segment_name as country,
         account_id,
         campaign_id,
         placement,

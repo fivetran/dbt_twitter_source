@@ -1,6 +1,11 @@
-[PR #32](https://github.com/fivetran/dbt_twitter_source/pull/32) includes the following updates:
+# dbt_twitter_source v0.10.1
+
+## Bug Fix
+- Replaces references to the deprecated `CAMPAIGN_LOCATIONS_REPORT` AND `CAMPAIGN_REGIONS_REPORT` `segment` field with `segment_name`, as this field was renamed in these tables in [June 2023](https://fivetran.com/docs/connectors/applications/twitter-ads/changelog#june2023).
 
 ### Under the Hood - July 2025 Updates
+
+[PR #32](https://github.com/fivetran/dbt_twitter_source/pull/32) includes the following updates:
 
 - Updated conditions in `.github/workflows/auto-release.yml`.
 - Added `.github/workflows/generate-docs.yml`.

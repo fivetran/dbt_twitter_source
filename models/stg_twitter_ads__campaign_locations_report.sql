@@ -27,7 +27,7 @@ final as (
     select 
         source_relation, 
         {{ dbt.date_trunc('day', 'date') }} as date_day,
-        {# Most people have country stored in segment_name, but some will have it in segment still #}
+        -- Most people have country stored in segment_name, but some will have it in segment still
         coalesce(segment_name, segment) as country,
         account_id,
         campaign_id,

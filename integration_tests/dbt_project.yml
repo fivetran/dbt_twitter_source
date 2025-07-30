@@ -9,6 +9,12 @@ snapshot-paths: ["snapshots"]
 vars:
   twitter_ads_schema: twitter_ads_source_integration_tests
 
+  # Comment OUT for docs generation
+  twitter_ads__line_item_report_passthrough_metrics: # @docs-ignore
+    - name: "conversion_purchases_metric" # @docs-ignore
+    - name: "conversion_custom_sale_amount" # @docs-ignore
+      alias: "custom_conversion_value" # @docs-ignore
+
   # Comment IN for docs generation
   # twitter_ads__using_campaign_locations_report: true # @docs-include
   # twitter_ads__using_campaign_regions_report: true # @docs-include

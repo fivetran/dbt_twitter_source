@@ -27,7 +27,7 @@ final as (
     select 
         source_relation, 
         {{ dbt.date_trunc('day', 'date') }} as date_day,
-        {# Most people have region stored in segment_name, but some will have it in segment still #}
+        -- Most people have region stored in segment_name, but some will have it in segment still
         coalesce(segment_name, segment) as region,
         case when lower(location_type) = 'countries' then location_name else null end as country,
         account_id,

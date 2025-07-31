@@ -4,7 +4,7 @@
 
 [PR #33](https://github.com/fivetran/dbt_twitter_source/pull/33) includes the following update:
 
-- In `stg_twitter_ads__campaign_locations_report` and `stg_twitter_ads__campaign_regions_report`, coalesces `segment` with `segment_name`, as `segment` was renamed to `segment_name` in the `CAMPAIGN_LOCATIONS_REPORT` and `CAMPAIGN_REGIONS_REPORT` source tables in [June 2023](https://fivetran.com/docs/connectors/applications/twitter-ads/changelog#june2023) for most users.
+- Updated `stg_twitter_ads__campaign_locations_report` and `stg_twitter_ads__campaign_regions_report` to coalesce `segment` with `segment_name`, as `segment` was renamed to `segment_name` in the `CAMPAIGN_LOCATIONS_REPORT` and `CAMPAIGN_REGIONS_REPORT` source tables in [June 2023](https://fivetran.com/docs/connectors/applications/twitter-ads/changelog#june2023) for most users.
   - In v0.9.0 and v0.10.0 of the package, most users likely had null `country` and `region` values, which this release resolves.
 
 ### Under the Hood - July 2025 Updates

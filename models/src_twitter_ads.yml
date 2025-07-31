@@ -537,8 +537,10 @@ sources:
         config:
           enabled: "{{ var('ad_reporting__twitter_ads_enabled', true) and var('twitter_ads__using_campaign_locations_report', false) }}"
         columns:
-          - name: segment 
+          - name: segment_name 
             description: "{{ doc('country') }}"
+          - name: segment
+            description: (DEPRECATED IN JUNE 2023) Long-form name of the country being reported on. Coalesced with the newer `segment_name` field.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
           - name: account_id
@@ -624,8 +626,10 @@ sources:
         config:
           enabled: "{{ var('ad_reporting__twitter_ads_enabled', true) and var('twitter_ads__using_campaign_regions_report', false) }}"
         columns:
-          - name: segment 
+          - name: segment_name 
             description: "{{ doc('region') }}"
+          - name: segment
+            description: (DEPRECATED IN JUNE 2023) Long-form name of the geographic region being reported on. Coalesced with the newer `segment_name` field.
           - name: location_type 
             description: Type of umbrella `LOCATION`. Likely to be `COUNTRIES`.
           - name: location_name

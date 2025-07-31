@@ -1,4 +1,4 @@
-location_name,location_type,segment,account_id,billed_charge_local_micro,campaign_id,clicks,date,impressions,placement,url_clicks
+location_name,location_type,segment_name,account_id,billed_charge_local_micro,campaign_id,clicks,date,impressions,placement,url_clicks
 United States,COUNTRIES,"Utah, US",18ce54lbsn8,125000,bjfji,22,2025-04-10 09:00:00,1400,ALL_ON_TWITTER,16
 Germany,COUNTRIES,"Hamburg, DE",18ce54lbsn8,95000,bjfi4,14,2025-04-11 10:00:00,1000,PUBLISHER_NETWORK,12
 France,COUNTRIES,"Île-de-France, FR",18ce54lbsn8,132000,9rf3e,29,2025-04-12 11:00:00,1700,ALL_ON_TWITTER,24
